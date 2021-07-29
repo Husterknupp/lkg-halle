@@ -1,3 +1,10 @@
+# IDE
+*.iml
+.idea
+
+# Codecept
+output
+
 # Logs
 logs
 *.log
