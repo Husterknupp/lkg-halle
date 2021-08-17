@@ -4,7 +4,6 @@ Wichtiges und nur Ideen
 
 ## Prio
 
-- [ ] get content dynamically
 - [ ] run regularly inside CI
 - [ ] pass credentials as secret
 
@@ -23,3 +22,4 @@ _noch nix_
 Aus allen Kategorien
 
 - [x] einloggen & Inhalte ändern (Text noch statisch)
+- [x] get content dynamically

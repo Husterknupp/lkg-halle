@@ -13,6 +13,7 @@ jobs:
     name: Codecept and Google Calendar
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2 # to have the repo content actually available
       - uses: actions/setup-node@v2
         with:
           node-version: "12"
