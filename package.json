@@ -9,14 +9,15 @@
         "codeceptjs:ui": "codecept-ui --app",
         "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
         "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
-        "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples"
     },
     "author": "husterknupp",
     "license": "MIT",
     "dependencies": {
         "@wdio/selenium-standalone-service": "~7.8.0",
         "codeceptjs-resemblehelper": "^1.9.3",
+        "googleapis": "~84.0.0",
+        "intl-dateformat": "~0.1.4",
         "prettier": "~2.3.2",
         "webdriverio": "~5.23.0"
     },

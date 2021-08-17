@@ -1,13 +1,52 @@
+const calendarEvents = require("./calendarEvents.js");
+const dateFormat = require("intl-dateformat").default;
+
 Feature("Gottesdienst Display");
 
-// todo get next Sunday's info from file or so
-// FILE SYSTEM
-// const fs = require("fs");
-// * https://codecept.io/configuration/
-// * https://github.com/codecept-js/CodeceptJS/blob/master/docs/helpers/FileSystem.md
-// * relative from root path of repo, don't write `~/code/ausprobieren/lkg-halle/package.json`, only `package.json` in this case
+/*
+calendar is source of truth because it's easiest to create/edit dates
+
+PLAN
+* (/) get calendar data
+* (on Sundays at 6pm)
+* (/) date, time,
+* ( ) Abendmahl if string contained
+* (/) function inside test file or custom step
+ */
+
+async function getNextSunday() {
+  const daysUntilSunday = 7 - new Date().getDay();
+  const nextSunday = new Date();
+  nextSunday.setUTCDate(nextSunday.getDate() + daysUntilSunday);
+  console.log(`next Sunday: ${nextSunday}`);
+
+  const monthFormatted = String(nextSunday.getUTCMonth() + 1).padStart(2, "0");
+  const dateString = `-${monthFormatted}-${nextSunday.getUTCDate()}`;
+  const maybeResult = (await calendarEvents()).find((event) => {
+    // format of start.dateTime: 2019-10-12T07:20:50.52Z
+    return event.start.dateTime.indexOf(dateString) !== -1;
+  });
+
+  if (!maybeResult) throw new Error(`No service on ${dateString}`);
+
+  // todo Abendmahl
+  const title = `Gottesdienst um ${new Date(
+    maybeResult.start.dateTime
+  ).getHours()} Uhr`;
+
+  // node only supports english locale (`toLocaleDateString` vs `dateFormat`)
+  const description = `am ${dateFormat(
+    new Date(maybeResult.start.dateTime),
+    "DD. MMMM",
+    { locale: "de-DE" }
+  )} in der Ludwig-Stur-Str. 5`;
+
+  return [title, description];
+}
 
 Scenario("Login to admin area and update slider", async ({ I }) => {
+  const [newTitle, newDescription] = await getNextSunday();
+
   // login happens in steps_file
   I.amLoggedIn();
 
