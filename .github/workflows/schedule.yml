@@ -1,0 +1,20 @@
+name: "Website Slider Update"
+
+#on:
+#  schedule:
+#    - cron: "0 18 * * SUN" # Sundays at 6pm
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  schedule:
+    name: Codecept and Google Calendar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+      - run: npm ci
+      - run: npm run update-slider
