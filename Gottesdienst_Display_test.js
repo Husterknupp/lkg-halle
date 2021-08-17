@@ -3,17 +3,6 @@ const dateFormat = require("intl-dateformat").default;
 
 Feature("Gottesdienst Display");
 
-/*
-calendar is source of truth because it's easiest to create/edit dates
-
-PLAN
-* (/) get calendar data
-* (on Sundays at 6pm)
-* (/) date, time,
-* ( ) Abendmahl if string contained
-* (/) function inside test file or custom step
- */
-
 async function getNextSunday() {
   const daysUntilSunday = 7 - new Date().getDay();
   const nextSunday = new Date();
@@ -29,10 +18,11 @@ async function getNextSunday() {
 
   if (!maybeResult) throw new Error(`No service on ${dateString}`);
 
-  // todo Abendmahl
-  const title = `Gottesdienst um ${new Date(
-    maybeResult.start.dateTime
-  ).getHours()} Uhr`;
+  const title =
+    (maybeResult.summary.toLowerCase().indexOf("abendmahl") !== -1
+      ? "Gottesdienst mit Abendmahl"
+      : "Gottesdienst") +
+    ` um ${new Date(maybeResult.start.dateTime).getHours()} Uhr`;
 
   // node only supports english locale (`toLocaleDateString` vs `dateFormat`)
   const description = `am ${dateFormat(
@@ -50,7 +40,7 @@ Scenario("Login to admin area and update slider", async ({ I }) => {
   // login happens in steps_file
   I.amLoggedIn();
 
-  I.amOnPage("/wp-admin/post.php?post=284&action=edit");
+  I.amOnPage("<PAGE>");
 
   const oldTitle = await I.grabValueFrom("input[name=slide_title_field]");
   console.log(`replace old title *${oldTitle}* with new version *${newTitle}*`);
