@@ -4,11 +4,12 @@ Wichtiges und nur Ideen
 
 ## Prio
 
-- [x] run regularly inside CI
+- [ ] better file structure
 
 ## Backlog
 
 - [ ] dedicated WP user
+- [ ] overwrite.txt
 
 ## Icebox
 
@@ -23,3 +24,4 @@ Aus allen Kategorien
 - [x] einloggen & Inhalte ändern (Text noch statisch)
 - [x] get content dynamically
 - [x] pass credentials as secret
+- [x] run regularly inside CI
