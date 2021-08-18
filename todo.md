@@ -5,7 +5,6 @@ Wichtiges und nur Ideen
 ## Prio
 
 - [ ] run regularly inside CI
-- [ ] pass credentials as secret
 
 ## Backlog
 
@@ -23,3 +22,4 @@ Aus allen Kategorien
 
 - [x] einloggen & Inhalte ändern (Text noch statisch)
 - [x] get content dynamically
+- [x] pass credentials as secret
