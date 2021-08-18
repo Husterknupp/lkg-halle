@@ -1,7 +1,6 @@
 const google = require("googleapis").google;
 
 async function createAuthClient() {
-  // todo secrets properly
   const private_key = process.env.SERVICE_ACCOUNT_PRIVATE_KEY;
   const client_email = process.env.SERVICE_ACCOUNT_EMAIL;
 
