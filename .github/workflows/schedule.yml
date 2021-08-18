@@ -18,4 +18,11 @@ jobs:
         with:
           node-version: "12"
       - run: npm ci
-      - run: npm run update-slider
+      - env:
+          GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
+          SERVICE_ACCOUNT_EMAIL: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          SERVICE_ACCOUNT_PRIVATE_KEY: ${{ secrets.SERVICE_ACCOUNT_PRIVATE_KEY }}
+          PASSWORD_WP_ADMIN: ${{ secrets.PASSWORD_WP_ADMIN }}
+          USERNAME_WP_ADMIN: ${{ secrets.USERNAME_WP_ADMIN }}
+          WP_SLIDER_URL: ${{ secrets.WP_SLIDER_URL }}
+        run: npm run update-slider

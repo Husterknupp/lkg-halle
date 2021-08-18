@@ -2,8 +2,8 @@ const google = require("googleapis").google;
 
 async function createAuthClient() {
   // todo secrets properly
-  const private_key = "<SECRET>";
-  const client_email = "<EMAIL>";
+  const private_key = process.env.SERVICE_ACCOUNT_PRIVATE_KEY;
+  const client_email = process.env.SERVICE_ACCOUNT_EMAIL;
 
   const jwtClient = new google.auth.JWT(client_email, null, private_key, [
     // 'https://www.googleapis.com/auth/calendar.readonly' , // lists the explicit invites with only that
@@ -29,7 +29,7 @@ module.exports = async () => {
   const calendar = google.calendar("v3");
   try {
     const response = await calendar.events.list({
-      calendarId: "<CALENDAR_ID>",
+      calendarId: process.env.GOOGLE_CALENDAR_ID,
       auth,
     });
     console.log(`found ${(response.data.items || []).length} items`);

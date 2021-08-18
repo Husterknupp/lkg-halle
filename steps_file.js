@@ -7,8 +7,8 @@ module.exports = function() {
 
         amLoggedIn: function() {
             this.amOnPage('/wp-login.php');
-            this.fillField('Benutzername', process.env.LKG_USERNAME);
-            this.fillField('Passwort', secret(process.env.LKG_PASSWORD));
+            this.fillField('Benutzername', process.env.PASSWORD_WP_ADMIN);
+            this.fillField('Passwort', secret(process.env.USERNAME_WP_ADMIN));
             this.click('Anmelden');
         },
     });
