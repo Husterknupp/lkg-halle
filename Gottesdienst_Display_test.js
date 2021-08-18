@@ -42,6 +42,8 @@ Scenario("Login to admin area and update slider", async ({ I }) => {
 
   I.amOnPage("/wp-admin/post.php?post=284&action=edit");
 
+  console.log(await I.grabTitle());
+
   const oldTitle = await I.grabValueFrom("input[name=slide_title_field]");
   console.log(`replace old title *${oldTitle}* with new version *${newTitle}*`);
   I.fillField("slide_title_field", newTitle);
