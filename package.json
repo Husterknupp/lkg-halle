@@ -10,7 +10,7 @@
     "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
     "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
     "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples",
-    "update-slider": "HEADLESS=true codeceptjs run --grep \"Gottesdienst Display\""
+    "update-slider": "HEADLESS=true codeceptjs run --grep \"Gottesdienst Display\" --debug"
   },
   "author": "husterknupp",
   "license": "MIT",
