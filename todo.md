@@ -4,7 +4,7 @@ Wichtiges und nur Ideen
 
 ## Prio
 
-- [ ] run regularly inside CI
+- [x] run regularly inside CI
 
 ## Backlog
 
