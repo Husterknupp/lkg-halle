@@ -22,7 +22,10 @@ async function getNextSunday() {
     (maybeResult.summary.toLowerCase().indexOf("abendmahl") !== -1
       ? "Gottesdienst mit Abendmahl"
       : "Gottesdienst") +
-    ` um ${new Date(maybeResult.start.dateTime).getHours()} Uhr`;
+    ` um ${dateFormat(new Date(maybeResult.start.dateTime), "HH", {
+      timezone: "Europe/Berlin",
+      locale: "de-DE",
+    })} Uhr`;
 
   // node only supports english locale (`toLocaleDateString` vs `dateFormat`)
   const description = `am ${dateFormat(
@@ -40,9 +43,7 @@ Scenario("Login to admin area and update slider", async ({ I }) => {
   // login happens in steps_file
   I.amLoggedIn();
 
-  I.amOnPage("/wp-admin/post.php?post=284&action=edit");
-
-  console.log(await I.grabTitle());
+  I.amOnPage(process.env.WP_SLIDER_URL);
 
   const oldTitle = await I.grabValueFrom("input[name=slide_title_field]");
   console.log(`replace old title *${oldTitle}* with new version *${newTitle}*`);
