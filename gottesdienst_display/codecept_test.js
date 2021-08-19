@@ -1,4 +1,4 @@
-const calendarEvents = require("./calendarEvents.js");
+const GoogleCalendar = require("./google_calendar.js");
 const dateFormat = require("intl-dateformat").default;
 
 Feature("Gottesdienst Display");
@@ -11,7 +11,7 @@ async function getNextSunday() {
 
   const monthFormatted = String(nextSunday.getUTCMonth() + 1).padStart(2, "0");
   const dateString = `-${monthFormatted}-${nextSunday.getUTCDate()}`;
-  const maybeResult = (await calendarEvents()).find((event) => {
+  const maybeResult = (await GoogleCalendar.getEvents()).find((event) => {
     // format of start.dateTime: 2019-10-12T07:20:50.52Z
     return event.start.dateTime.indexOf(dateString) !== -1;
   });

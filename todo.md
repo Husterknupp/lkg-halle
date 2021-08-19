@@ -4,11 +4,11 @@ Wichtiges und nur Ideen
 
 ## Prio
 
-- [ ] better file structure
+- [ ] transfer calendar (don't maintain 2 calendars)
+- [ ] dedicated WP user
 
 ## Backlog
 
-- [ ] dedicated WP user
 - [ ] overwrite.txt
 
 ## Icebox
@@ -25,3 +25,4 @@ Aus allen Kategorien
 - [x] get content dynamically
 - [x] pass credentials as secret
 - [x] run regularly inside CI
+- [x] better file structure

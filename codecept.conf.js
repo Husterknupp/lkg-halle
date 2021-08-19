@@ -1,35 +1,35 @@
-const { setHeadlessWhen } = require('@codeceptjs/configure');
+const { setHeadlessWhen } = require("@codeceptjs/configure");
 
 // turn on headless mode when running with HEADLESS=true environment variable
 // export HEADLESS=true && npx codeceptjs run
 setHeadlessWhen(process.env.HEADLESS);
 
 exports.config = {
-  tests: './*_test.js',
-  output: './output',
+  tests: "./gottesdienst_display/*_test.js",
+  output: "./output",
   helpers: {
     Playwright: {
-      url: 'https://lkg-halle.de',
+      url: "https://lkg-halle.de",
       show: true,
-      browser: 'chromium'
-    }
+      browser: "chromium",
+    },
   },
   include: {
-    I: './steps_file.js'
+    I: "./gottesdienst_display/steps_file.js",
   },
   bootstrap: null,
   mocha: {},
-  name: 'lkg-halle',
+  name: "lkg-halle",
   plugins: {
     pauseOnFail: {},
     retryFailedStep: {
-      enabled: true
+      enabled: true,
     },
     tryTo: {
-      enabled: true
+      enabled: true,
     },
     screenshotOnFail: {
-      enabled: true
-    }
-  }
-}
+      enabled: true,
+    },
+  },
+};

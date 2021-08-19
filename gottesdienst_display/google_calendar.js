@@ -22,7 +22,7 @@ async function createAuthClient() {
   return jwtClient;
 }
 
-module.exports = async () => {
+async function getEvents() {
   const auth = await createAuthClient();
 
   const calendar = google.calendar("v3");
@@ -37,4 +37,6 @@ module.exports = async () => {
     console.error("The API returned an error: " + err);
     throw err;
   }
-};
+}
+
+module.exports = { getEvents };
