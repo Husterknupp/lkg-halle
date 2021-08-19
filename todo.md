@@ -5,7 +5,6 @@ Wichtiges und nur Ideen
 ## Prio
 
 - [ ] transfer calendar (don't maintain 2 calendars)
-- [ ] dedicated WP user
 
 ## Backlog
 
@@ -26,3 +25,4 @@ Aus allen Kategorien
 - [x] pass credentials as secret
 - [x] run regularly inside CI
 - [x] better file structure
+- [x] dedicated WP user
