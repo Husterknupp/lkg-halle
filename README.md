@@ -4,11 +4,11 @@ Helper scripts
 
 ## Run Script
 
-`$ HEADLESS=true LKG_USERNAME=<USERNAME> LKG_PASSWORD=<PASSWORD> npm run codeceptjs -- --fgrep "Gottesdienst Display"`
+`$ USERNAME_WP_ADMIN=<USERNAME> PASSWORD_WP_ADMIN=<PASSWORD> npm run update-slider`
 
 ## Event Overwrite
 
-_(Feature not implemented yet)_
+_Feature not implemented yet_
 
 If `overwrite.txt` contains a title and a description the script will always ignore the calendar data in favor of this checked in content.
 
@@ -23,3 +23,7 @@ A service accounts needs access to a shared calendar in order to read events. Sh
 ## Codecept
 
 Initialize Codecept with `npx codecept .` + `npx codecept init`
+
+## GitHub Action
+
+Slider gets updated via scheduled action.
