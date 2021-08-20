@@ -4,7 +4,6 @@ Wichtiges und nur Ideen
 
 ## Prio
 
-- [ ] transfer calendar (don't maintain 2 calendars)
 
 ## Backlog
 
@@ -26,3 +25,4 @@ Aus allen Kategorien
 - [x] run regularly inside CI
 - [x] better file structure
 - [x] dedicated WP user
+- [x] transfer calendar (don't maintain 2 calendars)
