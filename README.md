@@ -18,7 +18,7 @@ Useful if the banner should contain multiple events at once or in the Ostermonta
 
 Calendar is source of truth because it's easiest to create/edit dates.
 
-A service accounts needs access to a shared calendar in order to read events. Sharing through the calendar website didn't work for me. I added it via `google.calendar.calendarList.insert` programmatically (the service account email address).
+A service account needs access to a shared calendar in order to read events. Sharing through the calendar website didn't make the events visible to the service account for me. I added it programmatically via `google.calendar.calendarList.insert` (the service account email address).
 
 ## Codecept
 
