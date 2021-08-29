@@ -1,5 +1,5 @@
 const GoogleCalendar = require("./google_calendar.js");
-const dateFormat = require("intl-dateformat").default;
+const createDateFormatter = require("intl-dateformat").createDateFormatter;
 
 Feature("Gottesdienst Display");
 
@@ -23,6 +23,11 @@ async function getNextSunday() {
 
   if (!maybeResult) throw new Error(`No service on ${dateString}`);
 
+  const dateFormat = createDateFormatter({
+    D: ({ day }) => (day[0] === "0" ? day[1] : day),
+  });
+
+  // node only supports english locale (`toLocaleDateString` vs `dateFormat`)
   const title =
     (maybeResult.summary.toLowerCase().indexOf("abendmahl") !== -1
       ? "Gottesdienst mit Abendmahl"
@@ -32,10 +37,9 @@ async function getNextSunday() {
       locale: "de-DE",
     })} Uhr`;
 
-  // node only supports english locale (`toLocaleDateString` vs `dateFormat`)
   const description = `am ${dateFormat(
     new Date(maybeResult.start.dateTime),
-    "DD. MMMM",
+    "D. MMMM",
     { locale: "de-DE" }
   )} in der Ludwig-Stur-Str. 5`;
 
