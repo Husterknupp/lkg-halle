@@ -10,12 +10,14 @@ async function getNextSunday() {
   console.log(`next Sunday: ${nextSunday}`);
 
   const monthFormatted = String(nextSunday.getUTCMonth() + 1).padStart(2, "0");
-  const dateString = `-${monthFormatted}-${nextSunday.getUTCDate()}`;
+  const dayFormatted = String(nextSunday.getUTCDate()).padStart(2, "0");
   const maybeResult = (await GoogleCalendar.getEvents()).find((event) => {
+    //  full-day events are not relevant  (also, they have no `dateTime`)
+    if (!event.start.dateTime) return false;
+
     // format of start.dateTime: 2019-10-12T07:20:50.52Z
     return (
-      //  no dateTime for full-day events
-      event.start.dateTime && event.start.dateTime.indexOf(dateString) !== -1
+      event.start.dateTime.indexOf(`-${monthFormatted}-${dayFormatted}`) !== -1
     );
   });
 

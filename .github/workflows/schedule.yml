@@ -2,11 +2,9 @@ name: "Website Slider Update"
 
 on:
   schedule:
-    - cron: "0 18 * * SUN"  # Sundays at 6pm UTC
-
-#on:
-#  push:
-#    branches: [main]
+    - cron: "0 18 * * SUN" # Sundays at 7pm/8pm CE(S)T
+  push:
+    branches: [main]
 
 jobs:
   schedule:
