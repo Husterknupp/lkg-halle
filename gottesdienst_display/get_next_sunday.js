@@ -8,6 +8,16 @@ function simpleDateFormat(date) {
   return `${date.getUTCFullYear()}-${monthFormatted}-${dayFormatted}`;
 }
 
+const dateFormat = createDateFormatter({
+  D: ({ day }) => (day[0] === "0" ? day[1] : day),
+  MMMM: ({ month }) =>
+    month.toLowerCase() === "december"
+      ? "Dezember"
+      : month.toLowerCase() === "october"
+      ? "Oktober"
+      : month,
+});
+
 async function getNextSunday() {
   const daysUntilSunday = 7 - new Date().getDay();
   const nextSunday = new Date();
@@ -31,10 +41,6 @@ async function getNextSunday() {
       `event found: [${maybeResult.summary}] on [${maybeResult.start.dateTime}]`
     );
   }
-
-  const dateFormat = createDateFormatter({
-    D: ({ day }) => (day[0] === "0" ? day[1] : day),
-  });
 
   // node only supports english locale (`toLocaleDateString` vs `dateFormat`)
   const title =
