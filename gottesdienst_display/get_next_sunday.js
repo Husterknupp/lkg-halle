@@ -10,12 +10,34 @@ function simpleDateFormat(date) {
 
 const dateFormat = createDateFormatter({
   D: ({ day }) => (day[0] === "0" ? day[1] : day),
-  MMMM: ({ month }) =>
-    month.toLowerCase() === "december"
-      ? "Dezember"
-      : month.toLowerCase() === "october"
-      ? "Oktober"
-      : month,
+  MMMM: ({ month }) => {
+    switch (month) {
+      case "1":
+        return "Januar";
+      case "2":
+        return "Februar";
+      case "3":
+        return "März";
+      case "4":
+        return "April";
+      case "5":
+        return "Mai";
+      case "6":
+        return "Juni";
+      case "7":
+        return "Juli";
+      case "8":
+        return "August";
+      case "9":
+        return "September";
+      case "10":
+        return "Oktober";
+      case "11":
+        return "November";
+      case "12":
+        return "Dezember";
+    }
+  },
 });
 
 async function getNextSunday() {
