@@ -12,23 +12,23 @@ const dateFormat = createDateFormatter({
   D: ({ day }) => (day[0] === "0" ? day[1] : day),
   MMMM: ({ month }) => {
     switch (month) {
-      case "1":
+      case "01":
         return "Januar";
-      case "2":
+      case "02":
         return "Februar";
-      case "3":
+      case "03":
         return "März";
-      case "4":
+      case "04":
         return "April";
-      case "5":
+      case "05":
         return "Mai";
-      case "6":
+      case "06":
         return "Juni";
-      case "7":
+      case "07":
         return "Juli";
-      case "8":
+      case "08":
         return "August";
-      case "9":
+      case "09":
         return "September";
       case "10":
         return "Oktober";
