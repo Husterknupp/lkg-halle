@@ -8,6 +8,7 @@ Wichtiges und nur Ideen
 ## Backlog
 
 - [ ] overwrite.txt
+- [ ] Event Overwrite: If overwrite.txt contains a title and a description the script will always ignore the calendar data in favor of this checked in content (useful if the banner should contain multiple events at once or in the Ostermontag case)
 
 ## Icebox
 
