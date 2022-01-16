@@ -8,11 +8,7 @@ Helper scripts
 
 ## Event Overwrite
 
-_Feature not implemented yet_
-
-If `overwrite.txt` contains a title and a description the script will always ignore the calendar data in favor of this checked in content.
-
-Useful if the banner should contain multiple events at once or in the Ostermontag case.
+Find manual event descriptions in the log output of the GitHub Action runs.
 
 ## Google Calendar
 
