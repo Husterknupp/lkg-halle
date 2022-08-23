@@ -16,16 +16,18 @@
   "author": "husterknupp",
   "license": "MIT",
   "dependencies": {
-    "@wdio/selenium-standalone-service": "~7.8.0",
-    "codeceptjs-resemblehelper": "^1.9.3",
-    "googleapis": "~84.0.0",
-    "intl-dateformat": "~0.1.4",
-    "prettier": "~2.3.2",
-    "webdriverio": "~5.23.0",
     "@codeceptjs/configure": "~0.6.2",
     "@codeceptjs/examples": "~1.2.1",
-    "@codeceptjs/ui": "~0.4.6",
+    "@codeceptjs/ui": "~0.4.7",
+    "@wdio/selenium-standalone-service": "~7.8.0",
     "codeceptjs": "~3.0.7",
-    "playwright": "~1.13.0"
+    "codeceptjs-resemblehelper": "~1.9.6",
+    "googleapis": "~84.0.0",
+    "intl-dateformat": "~0.1.4",
+    "playwright": "~1.13.1",
+    "webdriverio": "~5.23.0"
+  },
+  "devDependencies": {
+    "prettier": "~2.3.2"
   }
 }
