@@ -8,7 +8,8 @@ Scenario("Login to admin area and update slider", async ({ I }) => {
   // login happens in steps_file
   I.amLoggedIn();
 
-  I.amOnPage(process.env.WP_SLIDER_URL);
+  I.amOnPage("/wp-admin/post.php?post=284&action=edit");
+  // I.amOnPage(process.env.WP_SLIDER_URL);
 
   const oldTitle = await I.grabValueFrom("input[name=slide_title_field]");
   console.log(`replace old title *${oldTitle}* with new version *${newTitle}*`);
