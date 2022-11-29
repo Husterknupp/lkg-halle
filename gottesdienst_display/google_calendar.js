@@ -32,10 +32,8 @@ async function getEvents() {
   const calendar = google.calendar("v3");
   try {
     const response = await calendar.events.list({
-      // calendarId: process.env.GOOGLE_CALENDAR_ID,
-      // calendarId: "technik@lkg-halle.de",
-      calendarId:
-        "jl41h96fmbdc9vs6iu3t3rg1sc@group.calendar.google.com",
+      calendarId: process.env.GOOGLE_CALENDAR_ID,
+      timeMin: new Date().toISOString(),
       auth,
     });
     console.log(`found ${(response.data.items || []).length} items`);
