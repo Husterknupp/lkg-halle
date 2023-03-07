@@ -1,8 +1,11 @@
 const getNextSunday = require("./get_next_sunday.js").getNextSunday;
+const dotenv = require("dotenv");
 
 Feature("Gottesdienst Display");
 
 Scenario("Login to admin area and update slider", async ({ I }) => {
+  dotenv.config();
+
   const [newTitle, newDescription] = await getNextSunday();
 
   // login happens in steps_file
