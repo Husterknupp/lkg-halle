@@ -20,7 +20,7 @@
     "@codeceptjs/examples": "~1.2.1",
     "@codeceptjs/ui": "~0.4.7",
     "@wdio/selenium-standalone-service": "~7.8.0",
-    "codeceptjs": "~3.0.7",
+    "codeceptjs": "~3.4.1",
     "codeceptjs-resemblehelper": "~1.9.6",
     "dayjs": "~1.11.7",
     "dotenv": "~16.0.3",
