@@ -1,5 +1,17 @@
-const GoogleCalendar = require("./google_calendar.js");
+const { createCalendarClient } = require("../google-calendar");
 const createDateFormatter = require("intl-dateformat").createDateFormatter;
+
+async function getCalendarEvents() {
+  const calendar = await createCalendarClient();
+
+  const response = await calendar.events.list({
+    calendarId: process.env.GOOGLE_CALENDAR_ID,
+    timeMin: new Date().toISOString(),
+  });
+
+  console.log(`found ${(response.data.items || []).length} items`);
+  return response.data.items;
+}
 
 function simpleDateFormat(date) {
   const monthFormatted = String(date.getUTCMonth() + 1).padStart(2, "0");
@@ -46,9 +58,7 @@ async function getNextSunday() {
   nextSunday.setUTCDate(nextSunday.getDate() + daysUntilSunday);
   console.log(`next Sunday: ${nextSunday}`);
 
-  // todo instead of 2-level hierarchy (test -> this -> `GoogleCalender`),
-  //   invert control and pass down events from caller
-  const maybeResult = (await GoogleCalendar.getEvents()).find((event) => {
+  const maybeResult = (await getCalendarEvents()).find((event) => {
     //  full-day events are not relevant  (also, they have no `dateTime`)
     if (!event.start.dateTime) return false;
 
