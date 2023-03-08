@@ -5,10 +5,14 @@ module.exports = function () {
     // Define custom steps here, use 'this' to access default methods of I.
     // It is recommended to place a general 'login' function here.
 
-    amLoggedIn: function () {
+    amLoggedIn: async function () {
       this.amOnPage("/wp-login.php");
       this.fillField("Benutzername", process.env.USERNAME_WP_ADMIN);
       this.fillField("Passwort", secret(process.env.PASSWORD_WP_ADMIN));
+      const source = await this.grabSource();
+      console.log("######## DEBUG ########\n");
+      console.log(source);
+      console.log("\n######## DEBUG ########");
       this.click("Anmelden");
     },
   });
