@@ -9,10 +9,6 @@ module.exports = function () {
       this.amOnPage("/wp-login.php");
       this.fillField("Benutzername", process.env.USERNAME_WP_ADMIN);
       this.fillField("Passwort", secret(process.env.PASSWORD_WP_ADMIN));
-      const source = await this.grabSource();
-      console.log("######## DEBUG ########\n");
-      console.log(source);
-      console.log("\n######## DEBUG ########");
       this.click("Anmelden");
     },
   });
