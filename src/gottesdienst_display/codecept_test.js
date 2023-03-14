@@ -13,11 +13,6 @@ Scenario("Login to admin area and update slider", async ({ I }) => {
 
   I.amOnPage(process.env.WP_SLIDER_URL);
 
-  const source = await I.grabSource();
-  console.log("######## DEBUG test ########\n");
-  console.log(source);
-  console.log("\n######## DEBUG test ########");
-
   const oldTitle = await I.grabValueFrom("input[name=slide_title_field]");
   console.log(`replace old title *${oldTitle}* with new version *${newTitle}*`);
   I.fillField("slide_title_field", newTitle);
