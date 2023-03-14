@@ -13,6 +13,8 @@ module.exports = function () {
       console.log("######## DEBUG steps_file ########\n");
       console.log(source);
       console.log("\n######## DEBUG steps_file ########");
+      this.seeElement("Anmelden");
+      this.seeElement({ xpath: "//input[@id=wp-submit" });
       this.click("Anmelden");
     },
   });
