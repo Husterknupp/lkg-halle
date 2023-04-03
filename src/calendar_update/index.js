@@ -1,24 +1,26 @@
 const dotenv = require("dotenv");
 const dayjs = require("dayjs");
 const { createCalendarClient } = require("../google-calendar");
+const { readEvents } = require("../csv-parser");
 
-async function createCalendarEvents(events) {
+async function updateGoogleCalendar(events) {
   const calendar = await createCalendarClient();
 
   for (const event of events) {
-    let summary = event.name;
-    if (!summary) {
-      // No control over imported CSV - it comes with a funny space character
-      summary = event["﻿name"];
-    }
+    const summary = event.name;
     const description =
       summary.toLowerCase().indexOf("gottesdienst") !== -1
         ? `Predigt: ${event.preaching} • Moderation: ${event.moderator}`
         : undefined;
 
-    const locationAndTime = {
-      location:
-        "Landeskirchliche Gemeinschaft (LKG) Halle e.V., Ludwig-Stur-Straße 5, 06108 Halle (Saale)",
+    let location =
+      "Landeskirchliche Gemeinschaft (LKG) Halle e.V., Ludwig-Stur-Straße 5, 06108 Halle (Saale)";
+    if (summary.toLowerCase().indexOf("männer-stammtisch") !== -1) {
+      location =
+        '"My Sen" Vietnamesisches Restaurant + Biergarten, Beesener Str. 38, 06110 Halle (Saale)';
+    }
+
+    const time = {
       start: {
         dateTime: event.dateTime,
         timeZone: "Europe/Berlin",
@@ -32,8 +34,8 @@ async function createCalendarEvents(events) {
     const maybeExisting = (
       await calendar.events.list({
         calendarId: process.env.GOOGLE_CALENDAR_ID,
-        timeMin: dayjs(locationAndTime.start.dateTime).format(),
-        timeMax: dayjs(locationAndTime.end.dateTime).format(),
+        timeMin: dayjs(time.start.dateTime).format(),
+        timeMax: dayjs(time.end.dateTime).format(),
         maxResults: 1,
         singleEvents: true,
         orderBy: "startTime",
@@ -42,34 +44,28 @@ async function createCalendarEvents(events) {
 
     if (maybeExisting !== undefined) {
       console.log(
-        `Duplicate event on ${locationAndTime.start.dateTime}. Event with name ${maybeExisting.summary} already exists. (Name in the CSV: ${summary}).`
+        `Duplicate event on ${time.start.dateTime}. Event with name ${maybeExisting.summary} already exists. (Name in the CSV: ${summary}).`
       );
-      console.log("Not adding anything.");
+      console.log("Not adding this. Keeping the old version");
       continue;
     }
 
-    // Throws for error responses
+    // `insert` method throws for error responses
     const result = await calendar.events.insert({
       calendarId: process.env.GOOGLE_CALENDAR_ID,
-      resource: { summary, description, ...locationAndTime },
+      resource: { summary, description, location, ...time },
     });
     console.log(`Event created for ${event.dateTime}:`, result.data.htmlLink);
   }
 }
 
 async function run() {
-  // Dotenv preserves CLI arguments (in GitHub CI for instance). See `override` dotenv config prop
+  // dotenv preserves CLI arguments (in GitHub CI for instance). See `override` dotenv config prop
   dotenv.config();
-  const fileName = process.argv[2];
-  if (!fileName) {
-    throw Error("Missing csv file argument (file path)");
-  }
 
-  // neat-csv library comes as esm-only (and b/c codecept I don't know how to switch to type: module completely)
-  const { readEvents } = await import("../csv-parser/index.mjs");
-  const events = await readEvents(fileName);
-  await createCalendarEvents(events);
-  return "Done";
+  const events = await readEvents(process.argv[2]);
+  await updateGoogleCalendar(events);
+  console.log("Done");
 }
 
-run().then(console.log).catch(console.error);
+run().catch(console.error);
