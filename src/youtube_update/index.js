@@ -127,60 +127,48 @@ async function createLiveBroadcasts(events) {
   const authClient = await createAuthClient();
   console.log("oAuth successful");
 
-  for (const event of events) {
-    if (!event.isStreamable) {
-      console.log("no stream event.. continue");
-      continue;
-    }
-
-    let description = event.name;
-    if (event.preaching && event.preaching !== "0") {
-      description += "\nPredigt: " + event.preaching;
-    }
-    if (event.moderator && event.moderator !== "0") {
-      description += "\nModeration: " + event.moderator;
-    }
-
-    const dateTime = dayjs(event.dateTime);
-    const broadcast = {
-      snippet: {
-        title: `LKG Halle | ${dateTime.format(
-          "D.MM.YY"
-        )} | Gottesdienst um ${dateTime.format("HH:mm")} Uhr`,
-        scheduledStartTime: dateTime.subtract(10, "minute").format(), // requires ISO8601
-        description,
-      },
-      status: {
-        privacyStatus: "public",
-      },
-    };
-
-    const res = await google.youtube("v3").liveBroadcasts.insert({
-      auth: authClient,
-      part: "snippet,status",
-      resource: broadcast,
-    });
-
-    console.log(
-      `Gottesdienst on ${dateTime.format(
-        "D.MM.YY"
-      )} successfully inserted! Broadcast:`,
-      `https://studio.youtube.com/video/${res.data.id}/edit`
-    );
-  }
-}
-
-async function run() {
-  // todo move try-catch into createLi... method (streamline code with calendar_update)
   try {
-    const events = await readEvents(
-      process.argv[2] || "./veranstaltungen-lkg.csv"
-    );
+    for (const event of events) {
+      if (!event.isStreamable) {
+        console.log("no stream event.. continue");
+        continue;
+      }
 
-    // Insert a new upcoming stream to YouTube Studio
-    await createLiveBroadcasts(events);
+      let description = event.name;
+      if (event.preaching && event.preaching !== "0") {
+        description += "\nPredigt: " + event.preaching;
+      }
+      if (event.moderator && event.moderator !== "0") {
+        description += "\nModeration: " + event.moderator;
+      }
 
-    console.log("Done.");
+      const dateTime = dayjs(event.dateTime);
+      const broadcast = {
+        snippet: {
+          title: `LKG Halle | ${dateTime.format(
+            "D.MM.YY"
+          )} | Gottesdienst um ${dateTime.format("HH:mm")} Uhr`,
+          scheduledStartTime: dateTime.subtract(10, "minute").format(), // requires ISO8601
+          description,
+        },
+        status: {
+          privacyStatus: "public",
+        },
+      };
+
+      const res = await google.youtube("v3").liveBroadcasts.insert({
+        auth: authClient,
+        part: "snippet,status",
+        resource: broadcast,
+      });
+
+      console.log(
+        `Gottesdienst on ${dateTime.format(
+          "D.MM.YY"
+        )} successfully inserted! Broadcast:`,
+        `https://studio.youtube.com/video/${res.data.id}/edit`
+      );
+    }
   } catch (err) {
     if (err.response && err.response.data.error.details) {
       console.error(
@@ -197,6 +185,15 @@ async function run() {
       console.error("Error inserting upcoming stream:", err);
     }
   }
+}
+
+async function run() {
+  // todo move client_secret_youtube.json content to .dotenv config file
+  const events = await readEvents(
+    process.argv[2] || "./veranstaltungen-lkg.csv"
+  );
+  await createLiveBroadcasts(events);
+  console.log("Done.");
 }
 
 run();
