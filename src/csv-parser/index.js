@@ -4,6 +4,8 @@ const csv = require("csv-parser");
 async function readEvents(fileName) {
   if (!fileName) {
     throw Error("Missing csv file argument (file path)");
+  } else {
+    console.log("Reading events from file " + fileName);
   }
 
   const events = [];
@@ -21,21 +23,24 @@ async function readEvents(fileName) {
         if (event["﻿name"]) {
           event.name = event["﻿name"];
         }
+        if (!event.name) {
+          return;
+        }
+
+        if (event.isStreamable === "1") {
+          event.isStreamable = true;
+        } else {
+          event.isStreamable = false;
+        }
+
         events.push(event);
       })
       .on("error", console.error)
       .on("end", resolve);
   });
 
-  console.log(`Found ${events.length} events in ${fileName}`);
+  console.log(`Found ${events.length} events`);
   return events;
 }
-
-async function run() {
-  await readEvents(process.argv[2]);
-  console.log("Done.");
-}
-
-run().catch(console.error);
 
 module.exports = { readEvents };

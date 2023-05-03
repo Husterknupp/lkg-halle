@@ -30,6 +30,7 @@
     "googleapis": "^108.0.0",
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
+    "pkg": "~5.8.1",
     "playwright": "~1.31.2",
     "prettier": "~2.8.4",
     "webdriverio": "~7.30.2"

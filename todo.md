@@ -4,7 +4,6 @@ Wichtiges und nur Ideen
 
 ## Prio
 
-
 ## Backlog
 
 - [ ] bug: minutes of an event are hidden, [see pipeline job](https://github.com/Husterknupp/lkg-halle/runs/6148299893?check_suite_focus=true) (`2022-05-01T10:30:00+02:00` turns into "10 Uhr", should be "10:30 Uhr")
@@ -29,3 +28,4 @@ Aus allen Kategorien
 - [x] better file structure
 - [x] dedicated WP user
 - [x] transfer calendar (don't maintain 2 calendars)
+- [x] build binary from node script: https://github.com/nexe/nexe

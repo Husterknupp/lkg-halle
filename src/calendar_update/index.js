@@ -63,7 +63,9 @@ async function run() {
   // dotenv preserves CLI arguments (in GitHub CI for instance). See `override` dotenv config prop
   dotenv.config();
 
-  const events = await readEvents(process.argv[2]);
+  const events = await readEvents(
+    process.argv[2] || "./veranstaltungen-lkg.csv"
+  );
   await updateGoogleCalendar(events);
   console.log("Done");
 }

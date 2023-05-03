@@ -30,7 +30,7 @@ var SCOPES = ["https://www.googleapis.com/auth/youtube"];
 /////////////////
 
 // $ node src/youtube_update/index.js <EVENTS_CSV_FILE> <SECRETS.JSON>
-const SECRET_FILE = process.argv[3];
+const SECRET_FILE = process.argv[3] || "./client_secret_youtube.json";
 
 const TOKEN_DIR = `${
   process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
@@ -128,7 +128,10 @@ async function createLiveBroadcasts(events) {
   console.log("oAuth successful");
 
   for (const event of events) {
-    if (!event.isStreamable) continue;
+    if (!event.isStreamable) {
+      console.log("no stream event.. continue");
+      continue;
+    }
 
     let description = event.name;
     if (event.preaching && event.preaching !== "0") {
@@ -168,8 +171,11 @@ async function createLiveBroadcasts(events) {
 }
 
 async function run() {
+  // todo move try-catch into createLi... method (streamline code with calendar_update)
   try {
-    const events = await readEvents(process.argv[2]);
+    const events = await readEvents(
+      process.argv[2] || "./veranstaltungen-lkg.csv"
+    );
 
     // Insert a new upcoming stream to YouTube Studio
     await createLiveBroadcasts(events);
