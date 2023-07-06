@@ -1,7 +1,7 @@
 const { google } = require("googleapis");
 const { OAuth2Client } = require("google-auth-library");
-var fs = require("fs");
-var readline = require("readline");
+const fs = require("fs");
+const readline = require("readline");
 const dayjs = require("dayjs");
 const { readEvents } = require("../csv-parser");
 
@@ -21,9 +21,7 @@ const { readEvents } = require("../csv-parser");
 
 // If modifying these scopes, delete your previously saved access token / credentials
 // at ~/.credentials/<TOKEN>.json
-// var SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]; // this cannot create broadcasts
-var SCOPES = ["https://www.googleapis.com/auth/youtube"];
-//   "https://www.googleapis.com/auth/youtube.force-ssl",
+const SCOPES = ["https://www.googleapis.com/auth/youtube"];
 
 /////////////////
 // 👇 auth client
@@ -49,10 +47,10 @@ async function createAuthClient() {
 }
 
 async function authorizedClient(credentials) {
-  var clientSecret = credentials.installed.client_secret;
-  var clientId = credentials.installed.client_id;
-  var redirectUrl = credentials.installed.redirect_uris[0];
-  var oauth2Client = new OAuth2Client(clientId, clientSecret, redirectUrl);
+  const clientSecret = credentials.installed.client_secret;
+  const clientId = credentials.installed.client_id;
+  const redirectUrl = credentials.installed.redirect_uris[0];
+  const oauth2Client = new OAuth2Client(clientId, clientSecret, redirectUrl);
 
   try {
     // Check if we have previously stored a token.
@@ -74,13 +72,13 @@ async function getNewToken(oauth2Client) {
   // todo maybe use localhost:3000 server version (see example in docs: https://github.com/googleapis/google-auth-library-nodejs#oauth2)
   // to avoid having to manually copy-paste code=.. from browser
 
-  var authUrl = oauth2Client.generateAuthUrl({
+  const authUrl = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
   });
 
   console.log("Authorize this app by visiting this url: ", authUrl);
-  var rl = readline.createInterface({
+  const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
   });
@@ -199,4 +197,4 @@ async function run() {
   console.log("Done.");
 }
 
-run();
+run().catch(console.error)
