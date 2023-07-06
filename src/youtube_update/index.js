@@ -32,6 +32,9 @@ var SCOPES = ["https://www.googleapis.com/auth/youtube"];
 // $ node src/youtube_update/index.js <EVENTS_CSV_FILE> <SECRETS.JSON>
 const SECRET_FILE = process.argv[3] || "./client_secret_youtube.json";
 
+// ERROR: invalid_grant | code: '400' ??
+//    $ rm -f ~/.credentials/*
+
 const TOKEN_DIR = `${
   process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
 }/.credentials/`;
@@ -106,7 +109,7 @@ function storeTokenSync(token) {
   try {
     fs.mkdirSync(TOKEN_DIR);
   } catch (err) {
-    if (err.code != "EEXIST") {
+    if (err.code !== "EEXIST") {
       throw err;
     }
   }
@@ -130,7 +133,7 @@ async function createLiveBroadcasts(events) {
   try {
     for (const event of events) {
       if (!event.isStreamable) {
-        console.log("no stream event.. continue");
+        console.log("no stream event.. skip");
         continue;
       }
 

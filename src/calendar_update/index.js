@@ -67,7 +67,7 @@ async function run() {
     process.argv[2] || "./veranstaltungen-lkg.csv"
   );
   await updateGoogleCalendar(events);
-  console.log("Done");
+  console.log("Done.");
 }
 
 run().catch(console.error);
