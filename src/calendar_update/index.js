@@ -8,10 +8,16 @@ async function updateGoogleCalendar(events) {
 
   for (const event of events) {
     const summary = event.name;
-    const description =
-      summary.toLowerCase().indexOf("gottesdienst") !== -1
-        ? `Predigt: ${event.preaching} • Moderation: ${event.moderator}`
-        : undefined;
+
+    const description = [];
+    if (summary.toLowerCase().indexOf("gottesdienst") !== -1) {
+      if (event.preaching !== "") {
+        description.push(`Predigt: ${event.preaching}`);
+      }
+      if (event.moderator !== "") {
+        description.push(`Moderation: ${event.moderator}`);
+      }
+    }
 
     let location =
       "Landeskirchliche Gemeinschaft (LKG) Halle e.V., Ludwig-Stur-Straße 5, 06108 Halle (Saale)";
@@ -20,6 +26,7 @@ async function updateGoogleCalendar(events) {
         '"My Sen" Vietnamesisches Restaurant + Biergarten, Beesener Str. 38, 06110 Halle (Saale)';
     }
 
+    // Google Calendar event format
     const time = {
       start: {
         dateTime: event.dateTime,
@@ -53,7 +60,12 @@ async function updateGoogleCalendar(events) {
     // `insert` method throws for error responses
     const result = await calendar.events.insert({
       calendarId: process.env.GOOGLE_CALENDAR_ID,
-      resource: { summary, description, location, ...time },
+      resource: {
+        summary,
+        description: description.join(" • "),
+        location,
+        ...time,
+      },
     });
     console.log(`Event created for ${event.dateTime}:`, result.data.htmlLink);
   }
