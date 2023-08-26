@@ -9,7 +9,7 @@ const { readEvents } = require("../csv-parser");
 // https://developers.google.com/youtube/v3/live/docs/liveBroadcasts/insert?apix_params=%7B%22resource%22%3A%7B%7D%7D#try-it
 // request params: https://developers.google.com/youtube/v3/live/docs/liveBroadcasts/insert?apix_params=%7B%22resource%22%3A%7B%7D%7D#request-body
 // Live Streaming API is part of the YouTube Data API v3: https://developers.google.com/youtube/v3/live/getting-started
-//   (different than the Livestream API, that is not YouTube Data API v3)
+//   (different from the Livestream API, that is not YouTube Data API v3)
 // Calling the Data API: secrets.json file belongs to technical project; authorization (open link in browser, select Google account, ..) must be done by Google account/YouTube channel under which the broadcast should be listed
 //   - see https://developers.google.com/youtube/v3/live/getting-started
 
@@ -28,7 +28,8 @@ const SCOPES = ["https://www.googleapis.com/auth/youtube"];
 /////////////////
 
 // $ node src/youtube_update/index.js <EVENTS_CSV_FILE> <SECRETS.JSON>
-const SECRET_FILE = process.argv[3] || "./client_secret_youtube.json";
+const SECRET_FILE =
+  process.argv[3] || "./src/youtube_update/client_secret_youtube.json";
 
 // ERROR: invalid_grant | code: '400' ??
 //    $ rm -f ~/.credentials/*
@@ -36,6 +37,7 @@ const SECRET_FILE = process.argv[3] || "./client_secret_youtube.json";
 const TOKEN_DIR = `${
   process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
 }/.credentials/`;
+// Token is valid for 1h
 const TOKEN_PATH = `${
   process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
 }/.credentials/lkg-halle-youtube-update.json`;
@@ -54,6 +56,17 @@ async function authorizedClient(credentials) {
 
   try {
     // Check if we have previously stored a token.
+    const TIME_ONE_HOUR = new Date();
+    TIME_ONE_HOUR.setUTCMilliseconds(
+      TIME_ONE_HOUR.getUTCMilliseconds() - 60 * 60 * 1000
+    );
+    if (fs.statSync(TOKEN_PATH).birthtime < TIME_ONE_HOUR) {
+      console.log("Token exists but is too old. Issuing new one.");
+      // Not ideal but makes sense with the other possible throw (trying to parse maybeToken)
+      // noinspection ExceptionCaughtLocallyJS
+      throw new Error("Token exists but is too old");
+    }
+
     const maybeToken = fs.readFileSync(TOKEN_PATH, { encoding: "utf-8" });
     oauth2Client.setCredentials(JSON.parse(maybeToken).tokens);
     console.log("using existing token at", TOKEN_PATH);
@@ -197,4 +210,4 @@ async function run() {
   console.log("Done.");
 }
 
-run().catch(console.error)
+run().catch(console.error);

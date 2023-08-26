@@ -2,6 +2,12 @@ const { createReadStream } = require("fs");
 const csv = require("csv-parser");
 
 function sanitizeAndAdd(event, result) {
+  if (JSON.stringify(event).indexOf("�") !== -1) {
+    throw new Error(
+      `Found funny character � in event with name ${event.name}\nWrong encoding?`
+    );
+  }
+
   // No control over imported CSV - Excel on Windows may export it with a funny space character
   // noinspection JSNonASCIINames
   if (event["﻿name"]) {
@@ -34,11 +40,11 @@ async function readEvents(fileName) {
 
   const events = [];
   await new Promise((resolve) => {
-    // todo detect encoding (latin-1 or utf-8) based on this funny character
-    // �
+    const encoding = "latin1";
+    // const encoding = "utf-8";
 
     // Streaming the CSV file because csv-parser operates on streams
-    createReadStream(fileName, { encoding: "utf-8" })
+    createReadStream(fileName, { encoding })
       .pipe(
         // https://github.com/mafintosh/csv-parser#api
         csv({
