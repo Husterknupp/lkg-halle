@@ -21,7 +21,7 @@ async function updateGoogleCalendar(events) {
 
     let location =
       "Landeskirchliche Gemeinschaft (LKG) Halle e.V., Ludwig-Stur-Straße 5, 06108 Halle (Saale)";
-    if (summary.toLowerCase().indexOf("männer-stammtisch") !== -1) {
+    if (summary.toLowerCase().indexOf("stammtisch") !== -1) {
       location =
         '"My Sen" Vietnamesisches Restaurant + Biergarten, Beesener Str. 38, 06110 Halle (Saale)';
     }
