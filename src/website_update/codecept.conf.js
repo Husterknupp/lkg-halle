@@ -5,8 +5,8 @@ const { setHeadlessWhen } = require("@codeceptjs/configure");
 setHeadlessWhen(process.env.HEADLESS);
 
 exports.config = {
-  tests: "./src/website_update/index.js",
-  output: "./output",
+  tests: "./index.js",
+  output: "../../output",
   helpers: {
     Playwright: {
       url: "https://lkg-halle.de",
@@ -15,7 +15,7 @@ exports.config = {
     },
   },
   include: {
-    I: "./src/website_update/steps_file.js",
+    I: "./steps_file.js",
   },
   bootstrap: null,
   mocha: {},

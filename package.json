@@ -10,20 +10,18 @@
     "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
     "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
     "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples",
-    "update-slider": "HEADLESS=true codeceptjs run --grep \"Website Update\"",
+    "update-slider": "HEADLESS=true codeceptjs run --config ./src/website_update/codecept.conf.js --grep \"Website Update\"",
     "get-next-sunday": "node -e 'require(\"dotenv\").config(); require(\"./src/website_update/get_next_sunday.js\").getNextSunday()'"
   },
   "author": "husterknupp",
   "license": "MIT",
   "dependenciesComments": {
-    "codeceptjs": "Had problems upgrading to v3.3 because of internal plugin. Script couldn't get past wp login form. See https://github.com/codeceptjs/CodeceptJS/issues/3600"
+    "codeceptjs": "Had problems upgrading to v3.3+ because of internal plugin. Script couldn't get past wp login form. See https://github.com/codeceptjs/CodeceptJS/issues/3600"
   },
   "dependencies": {
     "@codeceptjs/configure": "~0.10.0",
     "@codeceptjs/examples": "~1.2.1",
     "@codeceptjs/ui": "~0.5.0",
-    "@wdio/cli": "~7.30.2",
-    "@wdio/selenium-standalone-service": "~7.8.0",
     "codeceptjs": "~3.2.3",
     "codeceptjs-resemblehelper": "~1.9.6",
     "csv-parser": "~3.0.0",
@@ -37,6 +35,5 @@
     "playwright": "~1.31.2",
     "prettier": "~2.8.4",
     "webdriverio": "~7.30.2"
-  },
-  "devDependencies": {}
+  }
 }
