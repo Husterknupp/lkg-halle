@@ -202,7 +202,6 @@ async function createLiveBroadcasts(events) {
 }
 
 async function run() {
-  // todo move client_secret_youtube.json content to .dotenv config file
   const events = await readEvents(
     process.argv[2] || "./veranstaltungen-lkg.csv"
   );

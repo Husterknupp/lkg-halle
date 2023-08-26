@@ -1,5 +1,7 @@
 veranstaltungen*csv
 input-csvs/
+# I anyway can't run the YouTube script automatically
+src/youtube_update/client_secret_youtube.json
 
 # IDE
 *.iml
