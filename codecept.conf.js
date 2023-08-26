@@ -5,7 +5,7 @@ const { setHeadlessWhen } = require("@codeceptjs/configure");
 setHeadlessWhen(process.env.HEADLESS);
 
 exports.config = {
-  tests: "./src/gottesdienst_display/*_test.js",
+  tests: "./src/website_update/index.js",
   output: "./output",
   helpers: {
     Playwright: {
@@ -15,7 +15,7 @@ exports.config = {
     },
   },
   include: {
-    I: "./src/gottesdienst_display/steps_file.js",
+    I: "./src/website_update/steps_file.js",
   },
   bootstrap: null,
   mocha: {},
