@@ -139,12 +139,12 @@ function storeTokenSync(token) {
 // Create a new YouTube Live Broadcast
 async function createLiveBroadcasts(events) {
   const authClient = await createAuthClient();
-  console.log("oAuth successful");
+  console.log("oAuth successful\n");
 
   try {
     for (const event of events) {
       if (!event.isStreamable) {
-        console.log("no stream event.. skip");
+        console.log(`no stream event.. skip (Name in the CSV: ${event.name})`);
         continue;
       }
 

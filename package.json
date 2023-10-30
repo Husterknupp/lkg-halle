@@ -10,8 +10,10 @@
     "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
     "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
     "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples",
+    "get-next-sunday": "node -e 'require(\"dotenv\").config(); require(\"./src/website_update/get_next_sunday.js\").getNextSunday()'",
     "update-slider": "HEADLESS=true codeceptjs run --config ./src/website_update/codecept.conf.js --grep \"Website Update\"",
-    "get-next-sunday": "node -e 'require(\"dotenv\").config(); require(\"./src/website_update/get_next_sunday.js\").getNextSunday()'"
+    "create-calendar-entries": "node src/calendar_update/index.js",
+    "create-youtube-broadcasts": "node src/youtube_update/index.js"
   },
   "author": "husterknupp",
   "license": "MIT",

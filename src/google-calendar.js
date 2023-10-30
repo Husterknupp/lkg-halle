@@ -20,7 +20,7 @@ async function createAuthClient() {
     }
   });
 
-  console.log("Google auth successful");
+  console.log("Google auth successful\n");
   return jwtClient;
 }
 

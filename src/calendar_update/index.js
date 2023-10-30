@@ -53,7 +53,7 @@ async function updateGoogleCalendar(events) {
       console.log(
         `Duplicate event on ${time.start.dateTime}. Event with name ${maybeExisting.summary} already exists. (Name in the CSV: ${summary}).`
       );
-      console.log("Not adding this. Keeping the old version");
+      console.log("Not adding this. Keeping the old version\n");
       continue;
     }
 

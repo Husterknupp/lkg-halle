@@ -56,7 +56,7 @@ async function readEvents(fileName) {
       .on("end", resolve);
   });
 
-  console.log(`Found ${events.length} events`);
+  console.log(`Found ${events.length} events\n`);
   return events;
 }
 
