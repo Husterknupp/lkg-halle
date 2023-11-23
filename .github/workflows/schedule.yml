@@ -11,10 +11,10 @@ jobs:
     name: Codecept and Google Calendar
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 # to have the repo content actually available
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4 # to have the repo content actually available
+      - uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: 16
       - run: npm ci
       - env:
           GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
