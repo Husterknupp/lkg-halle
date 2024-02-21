@@ -23,8 +23,8 @@
   "dependencies": {
     "@codeceptjs/configure": "~0.10.0",
     "@codeceptjs/examples": "~1.2.1",
-    "@codeceptjs/ui": "~0.5.0",
-    "codeceptjs": "~3.2.3",
+    "@codeceptjs/ui": "~0.7.7",
+    "codeceptjs": "~3.5.14",
     "codeceptjs-resemblehelper": "~1.9.6",
     "csv-parser": "~3.0.0",
     "dayjs": "~1.11.7",
