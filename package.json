@@ -29,7 +29,7 @@
     "csv-parser": "~3.0.0",
     "dayjs": "~1.11.7",
     "dotenv": "~16.0.3",
-    "faker": "~5.5.3",
+    "faker": "~6.6.6",
     "googleapis": "^108.0.0",
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
