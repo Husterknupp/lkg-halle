@@ -5,6 +5,8 @@ on:
     - cron: "0 18 * * SUN" # Sundays at 7pm/8pm CE(S)T
   push:
     branches: [main]
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   schedule:
