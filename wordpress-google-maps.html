@@ -1,23 +1,26 @@
 <!-- WP-Customizer: INDIVIDUELLES HTML FOOTER HORIZONTAL -->
 
-<div id="map" style="width: 100%; height: 400px;"></div>
+<div id="map" style="width: 100%; height: 400px"></div>
 
 <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 <script>
-    // Initialize and add the map
-    function initMap() {
-        const location = {
-            lat: 51.4874391,
-            lng: 11.9754276,
-        };
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 17,
-            center: location,
-        });
-        const marker = new google.maps.Marker({
-            position: location,
-            map: map,
-        });
-    }
+  // Initialize and add the map
+  function initMap() {
+    const location = {
+      lat: 51.4874391,
+      lng: 11.9754276,
+    };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 17,
+      center: location,
+    });
+    const marker = new google.maps.Marker({
+      position: location,
+      map: map,
+    });
+  }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<API_KEY>&callback=initMap&libraries=&v=weekly" async></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=<API_KEY>&callback=initMap&libraries=&v=weekly"
+  async
+></script>

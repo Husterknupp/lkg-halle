@@ -11,7 +11,7 @@ async function createAuthClient() {
       "https://www.googleapis.com/auth/calendar.events",
       "https://www.googleapis.com/auth/calendar.events.readonly",
       "https://www.googleapis.com/auth/calendar.readonly",
-    ]
+    ],
   );
 
   await jwtClient.authorize((err) => {

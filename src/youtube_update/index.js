@@ -58,7 +58,7 @@ async function authorizedClient(credentials) {
     // Check if we have previously stored a token.
     const TIME_ONE_HOUR = new Date();
     TIME_ONE_HOUR.setUTCMilliseconds(
-      TIME_ONE_HOUR.getUTCMilliseconds() - 60 * 60 * 1000
+      TIME_ONE_HOUR.getUTCMilliseconds() - 60 * 60 * 1000,
     );
     if (fs.statSync(TOKEN_PATH).birthtime < TIME_ONE_HOUR) {
       console.log("Token exists but is too old. Issuing new one.");
@@ -160,7 +160,7 @@ async function createLiveBroadcasts(events) {
       const broadcast = {
         snippet: {
           title: `LKG Halle | ${dateTime.format(
-            "D.MM.YY"
+            "D.MM.YY",
           )} | Gottesdienst um ${dateTime.format("HH:mm")} Uhr`,
           scheduledStartTime: dateTime.subtract(10, "minute").format(), // requires ISO8601
           description,
@@ -178,22 +178,22 @@ async function createLiveBroadcasts(events) {
 
       console.log(
         `Gottesdienst on ${dateTime.format(
-          "D.MM.YY"
+          "D.MM.YY",
         )} successfully inserted! Broadcast:`,
-        `https://studio.youtube.com/video/${res.data.id}/edit`
+        `https://studio.youtube.com/video/${res.data.id}/edit`,
       );
     }
   } catch (err) {
     if (err.response && err.response.data.error.details) {
       console.error(
         "Error inserting upcoming stream:",
-        err.response.data.error.details
+        err.response.data.error.details,
       );
     } else if (err.errors) {
       console.error(
         err.errors
           .map((error) => `${error.reason.toUpperCase()}: ${error.message}`)
-          .join("\n")
+          .join("\n"),
       );
     } else {
       console.error("Error inserting upcoming stream:", err);
@@ -203,7 +203,7 @@ async function createLiveBroadcasts(events) {
 
 async function run() {
   const events = await readEvents(
-    process.argv[2] || "./veranstaltungen-lkg.csv"
+    process.argv[2] || "./veranstaltungen-lkg.csv",
   );
   await createLiveBroadcasts(events);
   console.log("Done.");

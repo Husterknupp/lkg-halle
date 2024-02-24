@@ -4,7 +4,7 @@ const csv = require("csv-parser");
 function sanitizeAndAdd(event, result) {
   if (JSON.stringify(event).indexOf("�") !== -1) {
     throw new Error(
-      `Found funny character � in event with name ${event.name}\nWrong encoding?`
+      `Found funny character � in event with name ${event.name}\nWrong encoding?`,
     );
   }
 
@@ -49,7 +49,7 @@ async function readEvents(fileName) {
         // https://github.com/mafintosh/csv-parser#api
         csv({
           separator: ";",
-        })
+        }),
       )
       .on("data", (event) => sanitizeAndAdd(event, events))
       .on("error", console.error)

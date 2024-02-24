@@ -70,7 +70,7 @@ async function getNextSunday() {
     throw new Error(`No service on ${simpleDateFormat(nextSunday)}`);
   } else {
     console.log(
-      `event found: [${maybeResult.summary}] on [${maybeResult.start.dateTime}]`
+      `event found: [${maybeResult.summary}] on [${maybeResult.start.dateTime}]`,
     );
   }
 
@@ -87,7 +87,7 @@ async function getNextSunday() {
   const description = `am ${dateFormat(
     new Date(maybeResult.start.dateTime),
     "D. MMMM",
-    { locale: "de-DE" }
+    { locale: "de-DE" },
   )} in der Ludwig-Stur-Str. 5`;
 
   return [title, description];

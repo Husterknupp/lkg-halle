@@ -51,7 +51,7 @@ async function updateGoogleCalendar(events) {
 
     if (maybeExisting !== undefined) {
       console.log(
-        `Duplicate event on ${time.start.dateTime}. Event with name ${maybeExisting.summary} already exists. (Name in the CSV: ${summary}).`
+        `Duplicate event on ${time.start.dateTime}. Event with name ${maybeExisting.summary} already exists. (Name in the CSV: ${summary}).`,
       );
       console.log("Not adding this. Keeping the old version\n");
       continue;
@@ -76,7 +76,7 @@ async function run() {
   dotenv.config();
 
   const events = await readEvents(
-    process.argv[2] || "./veranstaltungen-lkg.csv"
+    process.argv[2] || "./veranstaltungen-lkg.csv",
   );
   await updateGoogleCalendar(events);
   console.log("Done.");

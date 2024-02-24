@@ -8,7 +8,7 @@ module.exports = function () {
       this.amOnPage("/wp-login.php");
       this.fillField(
         "Benutzername oder E-Mail-Adresse",
-        process.env.USERNAME_WP_ADMIN
+        process.env.USERNAME_WP_ADMIN,
       );
       this.fillField("Passwort", secret(process.env.PASSWORD_WP_ADMIN));
 
@@ -23,7 +23,7 @@ module.exports = function () {
           // https://playwright.dev/docs/api/class-locator#locator-click-option-timeout
           await button.click({ timeout: 12000 });
           console.log(`...done waiting.`);
-        }
+        },
       );
     },
   });
