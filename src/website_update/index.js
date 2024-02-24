@@ -9,7 +9,7 @@ Scenario("Login to admin area and update slider", async ({ I }) => {
   const [newTitle, newDescription] = await getNextSunday();
 
   // login happens in steps_file
-  I.amLoggedIn();
+  await I.amLoggedIn();
 
   I.amOnPage(process.env.WP_SLIDER_URL);
 

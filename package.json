@@ -24,8 +24,8 @@
     "@codeceptjs/configure": "~0.10.0",
     "@codeceptjs/examples": "~1.2.1",
     "@codeceptjs/ui": "~0.5.0",
-    "codeceptjs": "~3.2.3",
-    "codeceptjs-resemblehelper": "~1.9.6",
+    "codeceptjs": "~3.5.14",
+    "codeceptjs-resemblehelper": "~1.9.7",
     "csv-parser": "~3.0.0",
     "dayjs": "~1.11.7",
     "dotenv": "~16.0.3",
@@ -34,8 +34,8 @@
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
     "pkg": "~5.8.1",
-    "playwright": "~1.31.2",
+    "playwright": "~1.41.2",
     "prettier": "~2.8.4",
-    "webdriverio": "~7.30.2"
+    "webdriverio": "~8.32.3"
   }
 }

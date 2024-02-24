@@ -1,15 +1,30 @@
 // in this file you can append custom step methods to 'I' object
-
 module.exports = function () {
   return actor({
     // Define custom steps here, use 'this' to access default methods of I.
     // It is recommended to place a general 'login' function here.
 
-    amLoggedIn: function () {
+    amLoggedIn: async function () {
       this.amOnPage("/wp-login.php");
-      this.fillField("Benutzername", process.env.USERNAME_WP_ADMIN);
+      this.fillField(
+        "Benutzername oder E-Mail-Adresse",
+        process.env.USERNAME_WP_ADMIN
+      );
       this.fillField("Passwort", secret(process.env.PASSWORD_WP_ADMIN));
-      this.click("Anmelden");
+
+      await this.usePlaywrightTo(
+        "fix broken page navigation",
+        async (Playwright) => {
+          console.log(`Anmelden button needs some waiting time...`);
+          const button = await Playwright.page.getByText("Anmelden");
+          // This button click is weird. After click, Playwright waits for navigations to succeed.
+          //   When I click the button locally, after <5s I can see the next page.
+          // However, less waiting time (default: 5s) breaks and the click we be tried a few times before it will fail.
+          // https://playwright.dev/docs/api/class-locator#locator-click-option-timeout
+          await button.click({ timeout: 12000 });
+          console.log(`...done waiting.`);
+        }
+      );
     },
   });
 };
