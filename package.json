@@ -33,7 +33,7 @@
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
     "playwright": "~1.41.2",
-    "prettier": "~2.8.4",
+    "prettier": "~3.2.5",
     "webdriverio": "~8.32.3"
   }
 }
