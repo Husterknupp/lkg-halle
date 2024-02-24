@@ -16,6 +16,8 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
       - env:
           GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
           SERVICE_ACCOUNT_EMAIL: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
