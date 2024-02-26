@@ -67,7 +67,9 @@ async function getNextSunday() {
   });
 
   if (!maybeResult) {
-    throw new Error(`No service on ${simpleDateFormat(nextSunday)}`);
+    throw new Error(
+      `Found no church service in calendar for date ${simpleDateFormat(nextSunday)}`,
+    );
   } else {
     console.log(
       `event found: [${maybeResult.summary}] on [${maybeResult.start.dateTime}]`,
