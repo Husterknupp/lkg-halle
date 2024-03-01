@@ -1,6 +1,8 @@
 # lkg-halle
 
-Helper scripts
+Helper scripts for church events. Provide configuration values like the password to lkg-halle.de via `.env` file. See
+GitHub action yaml for
+a list of expected secrets.
 
 ## Create Shared Calendar Entries
 
@@ -14,7 +16,7 @@ Calendar entries will be used for website slider update.
 
 ## Update Slider on lkg-halle.de
 
-`$ USERNAME_WP_ADMIN=<USERNAME> PASSWORD_WP_ADMIN=<PASSWORD> npm run update-slider`
+`$ npm run update-slider`
 
 Initialize Codecept with `npx codecept .` + `npx codecept init`
 
@@ -22,4 +24,6 @@ Slider automatically gets updated via GitHub action.
 
 Google Calendar is source of truth because it's easiest to create/edit dates.
 
-A service account needs access to a shared calendar in order to read events. Sharing through the calendar website didn't make the events visible to the service account for me. I added it programmatically via `google.calendar.calendarList.insert` (the service account email address).
+A service account needs access to a shared calendar in order to read events. Sharing through the calendar website didn't
+make the events visible to the service account for me. I added it programmatically
+via `google.calendar.calendarList.insert` (the service account email address).
