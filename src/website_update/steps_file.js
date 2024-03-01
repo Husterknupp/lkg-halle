@@ -21,7 +21,7 @@ module.exports = function () {
           //   When I click the button locally, after <5s I can see the next page.
           // However, less waiting time (default: 5s) breaks and the click we be tried a few times before it will fail.
           // https://playwright.dev/docs/api/class-locator#locator-click-option-timeout
-          await button.click({ timeout: 12000 });
+          await button.click({ timeout: 15000 });
           console.log(`...done waiting.`);
         },
       );
