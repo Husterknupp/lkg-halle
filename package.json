@@ -34,6 +34,6 @@
     "neat-csv": "~7.0.0",
     "playwright": "~1.42.1",
     "prettier": "~3.2.5",
-    "webdriverio": "~8.33.1"
+    "webdriverio": "~8.34.1"
   }
 }
