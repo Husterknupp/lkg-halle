@@ -37,6 +37,7 @@
     "webdriverio": "~8.34.1"
   },
   "overrides": {
-    "axios": ">=0.28.0"
+    "axios": "^0.28.0",
+    "electron": "^22.3.24"
   }
 }
