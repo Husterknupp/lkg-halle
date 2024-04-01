@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@codeceptjs/configure": "~1.0.1",
-    "@codeceptjs/examples": "~1.2.1",
+    "@codeceptjs/examples": "~1.2.4",
     "@codeceptjs/ui": "~1.1.1",
     "codeceptjs": "3.5.14",
     "codeceptjs-resemblehelper": "~1.9.7",
