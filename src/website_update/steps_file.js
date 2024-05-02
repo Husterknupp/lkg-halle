@@ -15,13 +15,17 @@ module.exports = function () {
       await this.usePlaywrightTo(
         "fix broken page navigation",
         async (Playwright) => {
-          console.log(`Anmelden button needs some waiting time...`);
+          const timeoutConfig = { timeout: 30000 };
+          console.log(
+            `Anmelden button needs some waiting time...`,
+            timeoutConfig,
+          );
           const button = await Playwright.page.getByText("Anmelden");
           // This button click is weird. After click, Playwright waits for navigations to succeed.
           //   When I click the button locally, after <5s I can see the next page.
           // However, less waiting time (default: 5s) breaks and the click we be tried a few times before it will fail.
           // https://playwright.dev/docs/api/class-locator#locator-click-option-timeout
-          await button.click({ timeout: 15000 });
+          await button.click(timeoutConfig);
           console.log(`...done waiting.`);
         },
       );
