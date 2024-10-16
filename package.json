@@ -24,7 +24,7 @@
     "@codeceptjs/configure": "~1.0.1",
     "@codeceptjs/examples": "~1.2.4",
     "@codeceptjs/ui": "~1.2.0",
-    "codeceptjs": "3.6.2",
+    "codeceptjs": "3.6.7",
     "codeceptjs-resemblehelper": "~1.9.7",
     "csv-parser": "~3.0.0",
     "dayjs": "~1.11.13",
@@ -32,9 +32,9 @@
     "googleapis": "~144.0.0",
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
-    "playwright": "~1.47.0",
+    "playwright": "~1.48.1",
     "prettier": "~3.3.3",
-    "webdriverio": "~9.0.9"
+    "webdriverio": "~9.2.1"
   },
   "overrides": {
     "axios": "^0.28.0",
