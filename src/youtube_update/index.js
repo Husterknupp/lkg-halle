@@ -191,9 +191,9 @@ async function createLiveBroadcasts(events) {
       );
     } else if (err.errors) {
       console.error(
-        err.errors
+        `Could not insert broadcast. Error(s): \n${err.errors
           .map((error) => `${error.reason.toUpperCase()}: ${error.message}`)
-          .join("\n"),
+          .join("\n")}`,
       );
     } else {
       console.error("Error inserting upcoming stream:", err);
