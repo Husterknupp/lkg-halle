@@ -1,7 +1,37 @@
 const dotenv = require("dotenv");
 const dayjs = require("dayjs");
+const { createInterface } = require("readline");
 const { createCalendarClient } = require("../google-calendar");
 const { readEvents } = require("../csv-parser");
+
+async function shouldSkipEvent(summary, newEvent, maybeExisting) {
+  if (maybeExisting === undefined) {
+    return false;
+  }
+
+  const terminal = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  console.log(
+    `I see two events on the same day: Event '${maybeExisting.summary}' is already in the calendar (from ${maybeExisting.start.dateTime} to ${maybeExisting.end.dateTime}).`,
+  );
+  const question = `Do you want to add the new event '${summary}' from the CSV (from ${newEvent.start.dateTime} to ${newEvent.end.dateTime})? (y/n): `;
+
+  return await new Promise((resolve) => {
+    terminal.question(question, (answer) => {
+      terminal.close();
+      if (answer.toLowerCase() === "y" || answer.toLowerCase() === "yes") {
+        console.log("Adding the new event to the calendar.\n");
+        resolve(false);
+      } else {
+        console.log("Not adding this. Keeping the already existing version\n");
+        resolve(true);
+      }
+    });
+  });
+}
 
 async function updateGoogleCalendar(events) {
   const calendar = await createCalendarClient();
@@ -29,11 +59,13 @@ async function updateGoogleCalendar(events) {
     // Google Calendar event format
     const time = {
       start: {
-        dateTime: event.dateTime,
+        dateTime: dayjs(event.dateTime).format(),
         timeZone: "Europe/Berlin",
       },
       end: {
-        dateTime: dayjs(event.dateTime).add(event.lengthInHours, "hour"),
+        dateTime: dayjs(event.dateTime)
+          .add(event.lengthInHours, "hour")
+          .format(),
         timeZone: "Europe/Berlin",
       },
     };
@@ -49,11 +81,7 @@ async function updateGoogleCalendar(events) {
       })
     ).data.items[0];
 
-    if (maybeExisting !== undefined) {
-      console.log(
-        `Duplicate event on ${time.start.dateTime}. Event with name ${maybeExisting.summary} already exists. (Name in the CSV: ${summary}).`,
-      );
-      console.log("Not adding this. Keeping the old version\n");
+    if (await shouldSkipEvent(summary, time, maybeExisting)) {
       continue;
     }
 
@@ -78,6 +106,7 @@ async function run() {
   const events = await readEvents(
     process.argv[2] || "./veranstaltungen-lkg.csv",
   );
+
   await updateGoogleCalendar(events);
   console.log("Done.");
 }

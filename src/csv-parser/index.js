@@ -1,7 +1,22 @@
 const { createReadStream } = require("fs");
 const csv = require("csv-parser");
 
-function sanitizeAndAdd(event, result) {
+async function parseCsv(fileName, encoding, separator) {
+  const result = [];
+  await new Promise((resolve) => {
+    createReadStream(fileName, { encoding })
+      .pipe(
+        // https://github.com/mafintosh/csv-parser#api
+        csv({ separator }),
+      )
+      .on("data", (event) => result.push(event))
+      .on("error", console.error)
+      .on("end", resolve);
+  });
+  return result;
+}
+
+function sanitize(event) {
   if (JSON.stringify(event).indexOf("�") !== -1) {
     throw new Error(
       `Found funny character � in event with name ${event.name}\nWrong encoding?`,
@@ -28,7 +43,7 @@ function sanitizeAndAdd(event, result) {
     event.moderator = "";
   }
 
-  result.push(event);
+  return event;
 }
 
 async function readEvents(fileName) {
@@ -38,26 +53,12 @@ async function readEvents(fileName) {
     console.log("Reading events from file " + fileName);
   }
 
-  const events = [];
-  await new Promise((resolve) => {
-    const encoding = "latin1";
-    // const encoding = "utf-8";
+  // const encoding = "latin1";
+  const encoding = "utf-8";
 
-    // Streaming the CSV file because csv-parser operates on streams
-    createReadStream(fileName, { encoding })
-      .pipe(
-        // https://github.com/mafintosh/csv-parser#api
-        csv({
-          separator: ";",
-        }),
-      )
-      .on("data", (event) => sanitizeAndAdd(event, events))
-      .on("error", console.error)
-      .on("end", resolve);
-  });
-
-  console.log(`Found ${events.length} events\n`);
-  return events;
+  const rows = await parseCsv(fileName, encoding, ";");
+  console.log(`Found ${rows.length} events\n`);
+  return rows.map((e) => sanitize(e));
 }
 
 module.exports = { readEvents };
