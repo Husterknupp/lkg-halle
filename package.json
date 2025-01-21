@@ -42,6 +42,7 @@
     "electron": "^22.3.24",
     "send": "^0.19.0",
     "ws": "^8.17.1",
-    "xml2js": "^0.5.0"
+    "xml2js": "^0.5.0",
+    "child-process-promise": "^6.0.6"
   }
 }
