@@ -29,7 +29,7 @@
     "csv-parser": "~3.2.0",
     "dayjs": "~1.11.13",
     "dotenv": "~16.4.5",
-    "googleapis": "~144.0.0",
+    "googleapis": "~146.0.0",
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
     "playwright": "~1.50.1",
