@@ -1,12 +1,21 @@
 const dotenv = require("dotenv");
 const dayjs = require("dayjs");
 const { createInterface } = require("readline");
+const fs = require("fs");
+const path = require("path");
 const { createCalendarClient } = require("../google-calendar");
 const { readEvents } = require("../csv-parser");
 
-async function shouldSkipEvent(summary, newEvent, maybeExisting) {
+async function shouldSkipEvent(newEventSummary, newEventTime, maybeExisting) {
   if (maybeExisting === undefined) {
     return false;
+  }
+
+  if (
+    newEventSummary.toLocaleLowerCase() ===
+    maybeExisting.summary.toLocaleLowerCase()
+  ) {
+    return true;
   }
 
   const terminal = createInterface({
@@ -15,9 +24,9 @@ async function shouldSkipEvent(summary, newEvent, maybeExisting) {
   });
 
   console.log(
-    `I see two events on the same day: Event '${maybeExisting.summary}' is already in the calendar (from ${maybeExisting.start.dateTime} to ${maybeExisting.end.dateTime}).`,
+    `I see two events on the same day: Event '${maybeExisting.summary}' is already in the calendar (from ${maybeExisting.start.dateTime} to ${maybeExisting.end.dateTime}).`
   );
-  const question = `Do you want to add the new event '${summary}' from the CSV (from ${newEvent.start.dateTime} to ${newEvent.end.dateTime})? (y/n): `;
+  const question = `Do you want to add the new event '${newEventSummary}' from the CSV (from ${newEventTime.start.dateTime} to ${newEventTime.end.dateTime})? (y/n): `;
 
   return await new Promise((resolve) => {
     terminal.question(question, (answer) => {
@@ -99,12 +108,18 @@ async function updateGoogleCalendar(events) {
   }
 }
 
+function getAlphabeticallyLastFileName(directory) {
+  const files = fs.readdirSync(directory);
+  const sortedFiles = files.sort((a, b) => b.localeCompare(a));
+  return path.join(directory, sortedFiles[0]);
+}
+
 async function run() {
   // dotenv preserves CLI arguments (in GitHub CI for instance). See `override` dotenv config prop
   dotenv.config();
 
   const events = await readEvents(
-    process.argv[2] || "./veranstaltungen-lkg.csv",
+    process.argv[2] || getAlphabeticallyLastFileName("./input-csvs")
   );
 
   await updateGoogleCalendar(events);

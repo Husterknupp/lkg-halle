@@ -1,0 +1,20 @@
+on: workflow_dispatch
+
+jobs:
+  manual-entry-creation:
+    name: Create Calendar Entries On Manual Trigger
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # to have the repo content actually available
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - run: npm ci
+      - env:
+          # Dependabot PRs have Actions secrets not available.
+          # See secrets in Dependabot runs: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets
+          # Why secrets are not available: https://github.com/dependabot/dependabot-core/issues/3253#issuecomment-852541544
+          GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
+          SERVICE_ACCOUNT_EMAIL: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          SERVICE_ACCOUNT_PRIVATE_KEY: ${{ secrets.SERVICE_ACCOUNT_PRIVATE_KEY }}
+        run: npm run create-calendar-entries
