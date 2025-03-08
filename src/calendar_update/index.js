@@ -1,12 +1,11 @@
 const dotenv = require("dotenv");
 const dayjs = require("dayjs");
-const { createInterface } = require("readline");
 const fs = require("fs");
 const path = require("path");
 const { createCalendarClient } = require("../google-calendar");
 const { readEvents } = require("../csv-parser");
 
-async function shouldSkipEvent(newEventSummary, newEventTime, maybeExisting) {
+function shouldSkipEvent(newEventSummary, maybeExisting) {
   if (maybeExisting === undefined) {
     return false;
   }
@@ -15,31 +14,13 @@ async function shouldSkipEvent(newEventSummary, newEventTime, maybeExisting) {
     newEventSummary.toLocaleLowerCase() ===
     maybeExisting.summary.toLocaleLowerCase()
   ) {
+    console.log(
+      `I see two events with the same name on the same day: Event '${maybeExisting.summary}' is already in the calendar (from ${maybeExisting.start.dateTime} to ${maybeExisting.end.dateTime}). Not adding it a second time.`
+    );
     return true;
+  } else {
+    return false;
   }
-
-  const terminal = createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  console.log(
-    `I see two events on the same day: Event '${maybeExisting.summary}' is already in the calendar (from ${maybeExisting.start.dateTime} to ${maybeExisting.end.dateTime}).`
-  );
-  const question = `Do you want to add the new event '${newEventSummary}' from the CSV (from ${newEventTime.start.dateTime} to ${newEventTime.end.dateTime})? (y/n): `;
-
-  return await new Promise((resolve) => {
-    terminal.question(question, (answer) => {
-      terminal.close();
-      if (answer.toLowerCase() === "y" || answer.toLowerCase() === "yes") {
-        console.log("Adding the new event to the calendar.\n");
-        resolve(false);
-      } else {
-        console.log("Not adding this. Keeping the already existing version\n");
-        resolve(true);
-      }
-    });
-  });
 }
 
 async function updateGoogleCalendar(events) {
@@ -90,7 +71,7 @@ async function updateGoogleCalendar(events) {
       })
     ).data.items[0];
 
-    if (await shouldSkipEvent(summary, time, maybeExisting)) {
+    if (shouldSkipEvent(summary, maybeExisting)) {
       continue;
     }
 
