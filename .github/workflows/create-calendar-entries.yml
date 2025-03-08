@@ -1,3 +1,5 @@
+name: "Create Calendar Entries"
+
 on: workflow_dispatch
 
 jobs:

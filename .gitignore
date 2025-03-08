@@ -1,5 +1,5 @@
 veranstaltungen*csv
-input-csvs/
+input-csvs.bak/
 # I anyway can't run the YouTube script automatically
 src/youtube_update/client_secret_youtube.json
 
