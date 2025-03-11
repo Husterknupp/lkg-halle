@@ -1,11 +1,27 @@
 const dotenv = require("dotenv");
-const dayjs = require("dayjs");
 const fs = require("fs");
 const path = require("path");
 const { createCalendarClient } = require("../google-calendar");
 const { readEvents } = require("../csv-parser");
 
-function shouldSkipEvent(newEventSummary, maybeExisting) {
+const dayjs = require("dayjs");
+const utc = require("dayjs/plugin/utc");
+const timezone = require("dayjs/plugin/timezone"); // dependent on utc plugin
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+async function shouldSkipEvent(newEventSummary, time, calendar) {
+  const maybeExisting = (
+    await calendar.events.list({
+      calendarId: process.env.GOOGLE_CALENDAR_ID,
+      timeMin: dayjs.tz(time.start.dateTime, TZ_BERLIN).format(),
+      timeMax: dayjs.tz(time.end.dateTime, TZ_BERLIN).format(),
+      maxResults: 1,
+      singleEvents: true,
+      orderBy: "startTime",
+    })
+  ).data.items[0];
+
   if (maybeExisting === undefined) {
     return false;
   }
@@ -23,55 +39,59 @@ function shouldSkipEvent(newEventSummary, maybeExisting) {
   }
 }
 
+const TZ_BERLIN = "Europe/Berlin";
+
+function getStartAndEndTime(event) {
+  // Google Calendar event format
+  return {
+    start: {
+      dateTime: dayjs.tz(event.dateTime, TZ_BERLIN).format(),
+      timeZone: TZ_BERLIN,
+    },
+    end: {
+      dateTime: dayjs
+        .tz(event.dateTime, TZ_BERLIN)
+        .add(event.lengthInHours, "hour")
+        .format(),
+      timeZone: TZ_BERLIN,
+    },
+  };
+}
+
+function getLocation(summary) {
+  if (summary.toLowerCase().indexOf("stammtisch") !== -1) {
+    return '"My Sen" Vietnamesisches Restaurant + Biergarten, Beesener Str. 38, 06110 Halle (Saale)';
+  } else {
+    return "Landeskirchliche Gemeinschaft (LKG) Halle e.V., Ludwig-Stur-Straße 5, 06108 Halle (Saale)";
+  }
+}
+
+function getDescription(event, summary) {
+  if (summary.toLowerCase().indexOf("gottesdienst") === -1) {
+    return "";
+  }
+
+  const description = [];
+  if (event.preaching !== "") {
+    description.push(`Predigt: ${event.preaching}`);
+  }
+  if (event.moderator !== "") {
+    description.push(`Moderation: ${event.moderator}`);
+  }
+
+  return description.join(" • ");
+}
+
 async function updateGoogleCalendar(events) {
   const calendar = await createCalendarClient();
 
   for (const event of events) {
     const summary = event.name;
+    const description = getDescription(event, summary);
+    const location = getLocation(summary);
+    const time = getStartAndEndTime(event);
 
-    const description = [];
-    if (summary.toLowerCase().indexOf("gottesdienst") !== -1) {
-      if (event.preaching !== "") {
-        description.push(`Predigt: ${event.preaching}`);
-      }
-      if (event.moderator !== "") {
-        description.push(`Moderation: ${event.moderator}`);
-      }
-    }
-
-    let location =
-      "Landeskirchliche Gemeinschaft (LKG) Halle e.V., Ludwig-Stur-Straße 5, 06108 Halle (Saale)";
-    if (summary.toLowerCase().indexOf("stammtisch") !== -1) {
-      location =
-        '"My Sen" Vietnamesisches Restaurant + Biergarten, Beesener Str. 38, 06110 Halle (Saale)';
-    }
-
-    // Google Calendar event format
-    const time = {
-      start: {
-        dateTime: dayjs(event.dateTime).format(),
-        timeZone: "Europe/Berlin",
-      },
-      end: {
-        dateTime: dayjs(event.dateTime)
-          .add(event.lengthInHours, "hour")
-          .format(),
-        timeZone: "Europe/Berlin",
-      },
-    };
-
-    const maybeExisting = (
-      await calendar.events.list({
-        calendarId: process.env.GOOGLE_CALENDAR_ID,
-        timeMin: dayjs(time.start.dateTime).format(),
-        timeMax: dayjs(time.end.dateTime).format(),
-        maxResults: 1,
-        singleEvents: true,
-        orderBy: "startTime",
-      })
-    ).data.items[0];
-
-    if (shouldSkipEvent(summary, maybeExisting)) {
+    if (await shouldSkipEvent(summary, time, calendar)) {
       continue;
     }
 
@@ -80,12 +100,15 @@ async function updateGoogleCalendar(events) {
       calendarId: process.env.GOOGLE_CALENDAR_ID,
       resource: {
         summary,
-        description: description.join(" • "),
+        description,
         location,
         ...time,
       },
     });
-    console.log(`Event created for ${event.dateTime}:`, result.data.htmlLink);
+
+    console.log(
+      `Event created for ${event.dateTime} -- Id: ${result.data.id} -- link: ${result.data.htmlLink}`
+    );
   }
 }
 
