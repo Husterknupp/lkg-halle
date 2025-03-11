@@ -107,7 +107,7 @@ async function updateGoogleCalendar(events) {
     });
 
     console.log(
-      `Event created for ${event.dateTime} -- Id: ${result.data.id} -- link: ${result.data.htmlLink}`
+      `Event created for ${event.dateTime} -- ID: ${result.data.id} -- Link: ${result.data.htmlLink}`
     );
   }
 }
