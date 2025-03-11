@@ -16,6 +16,7 @@ async function shouldSkipEvent(newEventSummary, time, calendar) {
       calendarId: process.env.GOOGLE_CALENDAR_ID,
       timeMin: dayjs.tz(time.start.dateTime, TZ_BERLIN).format(),
       timeMax: dayjs.tz(time.end.dateTime, TZ_BERLIN).format(),
+      timezone: TZ_BERLIN,
       maxResults: 1,
       singleEvents: true,
       orderBy: "startTime",
