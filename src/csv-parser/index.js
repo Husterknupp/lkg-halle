@@ -7,7 +7,7 @@ async function parseCsv(fileName, encoding, separator) {
     createReadStream(fileName, { encoding })
       .pipe(
         // https://github.com/mafintosh/csv-parser#api
-        csv({ separator }),
+        csv({ separator })
       )
       .on("data", (event) => result.push(event))
       .on("error", console.error)
@@ -19,7 +19,7 @@ async function parseCsv(fileName, encoding, separator) {
 function sanitize(event) {
   if (JSON.stringify(event).indexOf("�") !== -1) {
     throw new Error(
-      `Found funny character � in event with name ${event.name}\nWrong encoding?`,
+      `Found funny character � in event with name ${event.name}\nWrong encoding?`
     );
   }
 
@@ -50,14 +50,14 @@ async function readEvents(fileName) {
   if (!fileName) {
     throw Error("Missing csv file argument (file path)");
   } else {
-    console.log("Reading events from file " + fileName);
+    console.log(`Reading events from file ${fileName}`);
   }
 
   // const encoding = "latin1";
   const encoding = "utf-8";
 
   const rows = await parseCsv(fileName, encoding, ";");
-  console.log(`Found ${rows.length} events\n`);
+  console.log(`Found ${rows.length} event(s)\n`);
   return rows.map((e) => sanitize(e));
 }
 
