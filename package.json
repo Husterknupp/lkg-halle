@@ -21,10 +21,10 @@
     "codeceptjs": "Had problems upgrading to v3.3+ because of internal plugin. Script couldn't get past wp login form. See https://github.com/codeceptjs/CodeceptJS/issues/3600"
   },
   "dependencies": {
-    "@codeceptjs/configure": "~1.0.2",
+    "@codeceptjs/configure": "~1.0.3",
     "@codeceptjs/examples": "~1.2.4",
-    "@codeceptjs/ui": "~1.2.2",
-    "codeceptjs": "3.7.2",
+    "@codeceptjs/ui": "~1.2.3",
+    "codeceptjs": "3.7.3",
     "codeceptjs-resemblehelper": "~1.9.7",
     "csv-parser": "~3.2.0",
     "dayjs": "~1.11.13",
@@ -32,9 +32,9 @@
     "googleapis": "~144.0.0",
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
-    "playwright": "~1.50.1",
-    "prettier": "~3.5.2",
-    "webdriverio": "~9.10.1"
+    "playwright": "~1.51.1",
+    "prettier": "~3.5.3",
+    "webdriverio": "~9.12.2"
   },
   "overrides": {
     "axios": "^1.8.2",
