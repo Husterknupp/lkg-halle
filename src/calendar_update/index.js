@@ -59,8 +59,12 @@ async function updateGoogleCalendar(events) {
       },
     });
 
+    let slicedSummary = summary.slice(0, 12);
+    if (slicedSummary.length < summary.length) {
+      slicedSummary += "...";
+    }
     console.log(
-      `Event created for ${event.dateTime} -- ID: ${result.data.id} -- Link: ${result.data.htmlLink}`
+      `Event "${slicedSummary}" created for ${event.dateTime} -- ID: ${result.data.id} -- Link: ${result.data.htmlLink}`
     );
   }
 }
