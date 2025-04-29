@@ -11,14 +11,11 @@ async function createAuthClient() {
       "https://www.googleapis.com/auth/calendar.events",
       "https://www.googleapis.com/auth/calendar.events.readonly",
       "https://www.googleapis.com/auth/calendar.readonly",
-    ],
+    ]
   );
 
-  await jwtClient.authorize((err) => {
-    if (err) {
-      throw err;
-    }
-  });
+  console.log("Authorizing Google Calendar API...");
+  await jwtClient.authorize();
 
   console.log("Google auth successful\n");
   return jwtClient;
