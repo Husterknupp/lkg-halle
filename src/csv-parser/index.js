@@ -1,6 +1,21 @@
 const { createReadStream } = require("fs");
 const csv = require("csv-parser");
 
+async function readEvents(fileName) {
+  if (!fileName) {
+    throw Error("Missing csv file argument (file path)");
+  } else {
+    console.log(`Reading events from file ${fileName}`);
+  }
+
+  // const encoding = "latin1";
+  const encoding = "utf-8";
+
+  const rows = await parseCsv(fileName, encoding, ";");
+  console.log(`Found ${rows.length} event(s)\n`);
+  return rows.map((e) => sanitize(e));
+}
+
 async function parseCsv(fileName, encoding, separator) {
   const result = [];
   await new Promise((resolve) => {
@@ -44,21 +59,6 @@ function sanitize(event) {
   }
 
   return event;
-}
-
-async function readEvents(fileName) {
-  if (!fileName) {
-    throw Error("Missing csv file argument (file path)");
-  } else {
-    console.log(`Reading events from file ${fileName}`);
-  }
-
-  // const encoding = "latin1";
-  const encoding = "utf-8";
-
-  const rows = await parseCsv(fileName, encoding, ";");
-  console.log(`Found ${rows.length} event(s)\n`);
-  return rows.map((e) => sanitize(e));
 }
 
 module.exports = { readEvents };

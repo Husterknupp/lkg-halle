@@ -66,7 +66,10 @@ async function updateGoogleCalendar(events) {
 }
 
 function getDescription(event, summary) {
-  if (summary.toLowerCase().indexOf("gottesdienst") === -1) {
+  if (
+    summary.toLowerCase().indexOf("gottesdienst") === -1 &&
+    summary.toLowerCase().indexOf("bibelgespräch") === -1
+  ) {
     return "";
   }
 
