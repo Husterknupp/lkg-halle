@@ -1,6 +1,7 @@
 {
   "name": "lkg-halle",
   "version": "1.0.0",
+  "private": true,
   "description": "update weekly events via scraping",
   "main": "index.js",
   "scripts": {

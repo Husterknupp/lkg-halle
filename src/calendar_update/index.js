@@ -119,30 +119,35 @@ async function shouldSkipEvent(newEventSummary, time, calendar) {
   const maybeExisting = (
     await calendar.events.list({
       calendarId: process.env.GOOGLE_CALENDAR_ID,
-      timeMin: dayjs.tz(time.start.dateTime, TZ_BERLIN).format(),
-      timeMax: dayjs.tz(time.end.dateTime, TZ_BERLIN).format(),
+      timeMin: time.start.dateTime,
+      timeMax: time.end.dateTime,
       timezone: TZ_BERLIN,
-      maxResults: 1,
+      maxResults: 10, // Increase to check for multiple events
       singleEvents: true,
       orderBy: "startTime",
     })
-  ).data.items[0];
+  ).data.items;
 
-  if (maybeExisting === undefined) {
+  if (!maybeExisting || maybeExisting.length === 0) {
     return false;
   }
 
-  if (
-    newEventSummary.toLocaleLowerCase() ===
-    maybeExisting.summary.toLocaleLowerCase()
-  ) {
+  for (const existingEvent of maybeExisting) {
     console.log(
-      `I see two events with the same name on the same day: Event '${maybeExisting.summary}' is already in the calendar (from ${maybeExisting.start.dateTime} to ${maybeExisting.end.dateTime}). Not adding it a second time.`
+      `Checking against existing event: ${existingEvent.summary} (${existingEvent.start.dateTime} - ${existingEvent.end.dateTime})`
     );
-    return true;
-  } else {
-    return false;
+    if (
+      newEventSummary.toLocaleLowerCase() ===
+      existingEvent.summary.toLocaleLowerCase()
+    ) {
+      console.log(
+        `I see two events with the same name on the same day: Event '${existingEvent.summary}' is already in the calendar (from ${existingEvent.start.dateTime} to ${existingEvent.end.dateTime}). Not adding it a second time.`
+      );
+      return true;
+    }
   }
+
+  return false;
 }
 
 run().catch(console.error);
