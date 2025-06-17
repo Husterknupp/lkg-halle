@@ -1,13 +1,9 @@
 ---
 import "../styles/global.css"; // import global styles here because this is the shared base layout
 import Logo from "../assets/logo-gvsa.svg";
+import Navigation from "../components/Navigation.astro";
 
 const { title } = Astro.props;
-const pathname = Astro.url.pathname; // context object: https://docs.astro.build/en/reference/api-reference/#the-context-object
-const navItems = [
-  { name: "Startseite", href: "/" },
-  { name: "Interner Bereich", href: "/interner-bereich" },
-];
 ---
 
 <!doctype html>
@@ -20,73 +16,24 @@ const navItems = [
     <title>{title}</title>
   </head>
   <body>
-    <div class="mx-[10vw]">
-      <header
-        class="flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200"
-      >
-        <div class="flex items-center">
-          <Logo class="w-12 h-12 mr-2" />
-          <span class="text-lg font-bold font-serif whitespace-nowrap"
-            >Landeskirchliche Gemeinschaft</span
-          >
-        </div>
-        <nav class="hidden md:block">
-          <ul class="flex space-x-6 font-sans text-base">
-            {
-              navItems.map((item) => (
-                <li>
-                  <a
-                    href={item.href}
-                    class={`hover:underline ${
-                      pathname === item.href ? "underline" : ""
-                    }`}
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </nav>
+    <header
+      class="md:mx-[10vw] flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200"
+    >
+      <div class="flex items-center">
+        <Logo class="w-12 h-12 mr-2" />
+        <span class="text-lg font-bold font-serif whitespace-nowrap"
+          >Landeskirchliche Gemeinschaft</span
+        >
+      </div>
+      <Navigation />
+    </header>
 
-        <!-- Mobile burger menu -->
-        <div class="md:hidden relative">
-          <button
-            id="burger"
-            class="flex flex-col justify-center items-center w-10 h-10"
-            aria-label="Navigationsmenü öffnen"
-            onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
-          >
-            <span class="block w-6 h-0.5 bg-gray-800 mb-1"></span>
-            <span class="block w-6 h-0.5 bg-gray-800 mb-1"></span>
-            <span class="block w-6 h-0.5 bg-gray-800"></span>
-          </button>
-          <div
-            id="mobile-menu"
-            class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50"
-          >
-            <ul class="flex flex-col font-sans text-base">
-              <li>
-                <a href="/" class="block px-4 py-2 hover:bg-gray-100"
-                  >Startseite</a
-                >
-              </li>
-              <li>
-                <a
-                  href="/interner-bereich"
-                  class="block px-4 py-2 hover:bg-gray-100">Interner Bereich</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
-
+    <div class="mb-8">
       <slot />
-
-      <address>map + address information</address>
-      <footer>FOOTER</footer>
     </div>
+
+    <address>map + address information</address>
+    <footer>FOOTER</footer>
   </body>
 </html>
 
@@ -109,18 +56,9 @@ const navItems = [
     --blue3: rgb(120, 169, 180);
     --blue4: rgb(24, 65, 98);
   }
-  /* .font-bitter {
-    font-family: "Bitter", Georgia, "Times New Roman", Times, serif;
-  }
-  .font-opensans {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  } */
 
-  /* Menu font-size: Between body font sizes and h1 font size -- dont do this: Instead use tailwind's default utility classes */
-  /* .fontsize-desktop {
-    font-size: 18px;
-  }
-  .fontsize-mobile {
-    font-size: 15px;
+  /* Menu font-size: Between body font sizes and h1 font size -- dont do this: Instead use tailwind's default utility classes
+  .fontsize-desktop: 18px;
+  .fontsize-mobile: 15px;
   } */
 </style>

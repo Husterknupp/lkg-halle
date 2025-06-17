@@ -1,0 +1,56 @@
+---
+const pathname = Astro.url.pathname; // context object: https://docs.astro.build/en/reference/api-reference/#the-context-object
+const navItems = [
+  { name: "Startseite", href: "/" },
+  { name: "Interner Bereich", href: "/interner-bereich" },
+];
+---
+
+<nav class="hidden md:block">
+  <ul class="flex space-x-6 font-sans text-base">
+    {
+      navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class={`hover:underline ${
+              pathname === item.href ? "underline" : ""
+            }`}
+          >
+            {item.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<!-- Mobile burger menu -->
+<div class="md:hidden relative">
+  <button
+    id="burger"
+    class="flex flex-col justify-center items-center w-10 h-10"
+    aria-label="Navigationsmenü öffnen"
+    onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+  >
+    <span class="block w-6 h-0.5 bg-gray-800 mb-1"></span>
+    <span class="block w-6 h-0.5 bg-gray-800 mb-1"></span>
+    <span class="block w-6 h-0.5 bg-gray-800"></span>
+  </button>
+  <div
+    id="mobile-menu"
+    class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50"
+  >
+    <ul class="flex flex-col font-sans text-base">
+      {
+        navItems.map((item) => (
+          <li>
+            <a href={item.href} class="block px-4 py-2 hover:bg-gray-100">
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
