@@ -29,9 +29,11 @@
   font-style: italic;
   font-display: swap;
 }
-.font-bitter {
-  font-family: "Bitter", Georgia, "Times New Roman", Times, serif;
-}
-.font-opensans {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+
+@theme {
+  --font-sans:
+    "Open Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif:
+    "Bitter", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
