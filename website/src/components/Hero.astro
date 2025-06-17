@@ -1,10 +1,11 @@
 ---
+import backgroundImage from "../assets/background.svg";
 const dateAndPlace = "am 15. Juni in der Ludwig-Stur-Str. 5";
 ---
 
 <section
   class="relative w-full min-h-[340px] flex items-center justify-center mb-8 bg-cover bg-center"
-  style="background-image: url('/src/assets/background.svg');"
+  style={`background-image: url(${backgroundImage.src});`}
 >
   <div class="absolute inset-0 bg-black/45 z-0"></div>
   <div
