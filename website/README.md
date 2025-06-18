@@ -56,4 +56,4 @@ import { Image } from 'astro:assets';
 <Image src="/path/to/image.jpg" alt="Description of image" width={500} height={300} />
 ```
 
-This will ensure that your images are optimized for performance and accessibility. For more details, refer to the [Astro Image Component documentation](https://docs.astro.build/en/core-concepts/images/).
+This will ensure that your images are optimized for performance and accessibility. For more details, refer to the [Astro Image Component documentation](https://docs.astro.build/en/guides/images/).
