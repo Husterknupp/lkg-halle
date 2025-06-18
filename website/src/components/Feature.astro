@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+
+export interface Props {
+  image: ImageMetadata;
+  title: string;
+  abstract: string;
+  href: string;
+}
+const { image, title, abstract, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="h-[380px] group flex flex-col items-center text-center p-6"
+>
+  <div class="relative mb-4">
+    <Image
+      src={image}
+      alt={title}
+      class="w-32 h-32 rounded-full object-cover border-4 border-white shadow duration-300 group-hover:scale-105 group-hover:border-primary-bright group-focus:scale-105 group-focus:border-primary-bright"
+      loading="lazy"
+    />
+  </div>
+  <h3 class="text-xl font-bold mb-2">
+    {title}
+  </h3>
+  <div
+    class="w-12 h-0.5 bg-gray-200 mx-auto mb-3 group-hover:bg-primary-bright group-focus:bg-primary-bright transition-colors duration-300"
+  >
+  </div>
+  <p class="mb-6 text-gray-700 min-h-[48px]">{abstract}</p>
+  <span
+    class="mt-auto px-6 py-2 outline-1 hover:outline-3 transition-width duration-300 rounded-full outline-primary-bright"
+  >
+    weiterlesen »
+  </span>
+</a>

@@ -36,4 +36,6 @@
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif:
     "Bitter", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --color-primary-stale: rgb(120, 169, 180);
+  --color-primary-bright: rgb(87, 166, 217);
 }

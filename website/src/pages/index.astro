@@ -1,11 +1,36 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
+import Feature from "../components/Feature.astro";
+import gottesdienstImg from "../assets/gottesdienst.jpg";
+import miteinanderImg from "../assets/miteinander.png";
+import musikImg from "../assets/musik.jpg";
 ---
 
 <BaseLayout title="LKG Halle">
   <main>
     <Hero />
-    <section class="md:mx-[10vw]">FEATURES</section>
+    <section class="md:mx-[10vw] py-2">
+      <div class="columns-1 gap-8 md:columns-3 md:gap-6">
+        <Feature
+          image={gottesdienstImg}
+          title="Gott Begegnen & Anbeten"
+          abstract="Wöchentlicher Gottesdienst, EC-Kreis und Bibelgespräch"
+          href="/gottesdienst"
+        />
+        <Feature
+          image={miteinanderImg}
+          title="Miteinander"
+          abstract="Offene Arbeiten Muckefuck, Muckeccino, MediMuck, sowie ein Männer-Stammtisch und Frauenkreis"
+          href="/miteinander"
+        />
+        <Feature
+          image={musikImg}
+          title="Musik"
+          abstract="Posaunenchor sowie Musik im Gottesdienst mit klassischen und modernen Liedern"
+          href="/musik"
+        />
+      </div>
+    </section>
   </main>
 </BaseLayout>
