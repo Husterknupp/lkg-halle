@@ -79,19 +79,13 @@ const { title } = Astro.props;
     height: 100%;
     font-family: var(--font-sans);
   }
-  address {
-    font-style: normal;
+  @layer base {
+    address {
+      font-style: normal;
+    }
   }
   :root {
-    --primary-color: rgb(87, 166, 217);
-    --secondary-color: rgb(241, 195, 91);
-    /* --secondary-color: rgb(142, 68, 173); */
-    --text-color: rgb(68, 68, 68);
     --background-color: rgb(236, 240, 241);
-    --blue1: rgb(87, 166, 217);
-    --blue2: rgb(51, 120, 163);
-    --blue3: rgb(120, 169, 180);
-    --blue4: rgb(24, 65, 98);
   }
 
   /* Menu font-size: Between body font sizes and h1 font size -- dont do this: Instead use tailwind's default utility classes
