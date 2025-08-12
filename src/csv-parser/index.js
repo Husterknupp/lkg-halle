@@ -22,7 +22,7 @@ async function parseCsv(fileName, encoding, separator) {
     createReadStream(fileName, { encoding })
       .pipe(
         // https://github.com/mafintosh/csv-parser#api
-        csv({ separator })
+        csv({ separator }),
       )
       .on("data", (event) => result.push(event))
       .on("error", console.error)
@@ -34,7 +34,7 @@ async function parseCsv(fileName, encoding, separator) {
 function sanitize(event) {
   if (JSON.stringify(event).indexOf("�") !== -1) {
     throw new Error(
-      `Found funny character � in event with name ${event.name}\nWrong encoding?`
+      `Found funny character � in event with name ${event.name}\nWrong encoding?`,
     );
   }
 
