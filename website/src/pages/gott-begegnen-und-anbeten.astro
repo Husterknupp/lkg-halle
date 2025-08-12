@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import EventCard from "../components/EventCard.astro";
 import gottesdienstImg from "../assets/gottesdienst.jpg";
 ---
 
@@ -33,76 +34,37 @@ import gottesdienstImg from "../assets/gottesdienst.jpg";
         <div>
           <h2 class="font-serif text-2xl mb-6 text-gray-900">Unsere Gottesdienste</h2>
           
-          <!-- Event Details -->
+          <!-- Event Cards -->
           <div class="space-y-6 mb-8">
-            <!-- Sunday Service -->
-            <div class="border-l-4 border-primary-bright pl-4 py-2">
-              <h3 class="font-semibold text-lg text-gray-900 mb-2">Gottesdienst mit Abendmahl</h3>
-              <div class="space-y-2 text-gray-700">
-                <div class="flex items-center">
-                  <svg class="w-5 h-5 mr-2 text-primary-bright" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span><strong>Sonntags um 10:00 Uhr</strong></span>
-                </div>
-                <div class="flex items-center">
-                  <svg class="w-5 h-5 mr-2 text-primary-bright" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Ludwig-Stur-Str. 5, 06108 Halle (Saale)</span>
-                </div>
-              </div>
-            </div>
+            <EventCard
+              title="Gottesdienst mit Abendmahl"
+              time="Sonntags um 10:00 Uhr"
+              place="Ludwig-Stur-Str. 5, 06108 Halle (Saale)"
+              description="Wir laden Sie herzlich ein zu unserem wöchentlichen Gottesdienst. Einmal im Monat feiern wir das Heilige Abendmahl. In unserer Gemeinschaft steht die persönliche Beziehung zu Gott im Mittelpunkt."
+              accentColor="primary-bright"
+            />
 
-            <!-- EC-Kreis -->
-            <div class="border-l-4 border-primary-stale pl-4 py-2">
-              <h3 class="font-semibold text-lg text-gray-900 mb-2">EC-Kreis</h3>
-              <div class="space-y-2 text-gray-700">
-                <div class="flex items-center">
-                  <svg class="w-5 h-5 mr-2 text-primary-bright" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span><strong>Freitags um 19:30 Uhr</strong></span>
-                </div>
-                <div class="flex items-center">
-                  <svg class="w-5 h-5 mr-2 text-primary-bright" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Ludwig-Stur-Str. 5, 06108 Halle (Saale)</span>
-                </div>
-              </div>
-            </div>
+            <EventCard
+              title="EC-Kreis"
+              time="Freitags um 19:30 Uhr"
+              place="Ludwig-Stur-Str. 5, 06108 Halle (Saale)"
+              description="Der EC-Kreis bietet die Möglichkeit für vertiefende Gespräche über den Glauben und persönlichen Austausch in kleinerer Runde. Eine offene Gemeinschaft für junge Erwachsene und alle, die sich jung fühlen."
+              accentColor="primary-stale"
+            />
 
-            <!-- Bible Study -->
-            <div class="border-l-4 border-primary-500 pl-4 py-2">
-              <h3 class="font-semibold text-lg text-gray-900 mb-2">Bibelgespräch</h3>
-              <div class="space-y-2 text-gray-700">
-                <div class="flex items-center">
-                  <svg class="w-5 h-5 mr-2 text-primary-bright" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span><strong>Donnerstags um 19:00 Uhr</strong></span>
-                </div>
-                <div class="flex items-center">
-                  <svg class="w-5 h-5 mr-2 text-primary-bright" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span>Ludwig-Stur-Str. 5, 06108 Halle (Saale)</span>
-                </div>
-              </div>
-            </div>
+            <EventCard
+              title="Bibelgespräch"
+              time="Donnerstags um 19:00 Uhr"
+              place="Ludwig-Stur-Str. 5, 06108 Halle (Saale)"
+              description="Gemeinsam erkunden wir die Bibel in entspannter Atmosphäre. Hier ist Raum für Fragen, Diskussion und das gemeinsame Entdecken der biblischen Botschaft. Alle sind herzlich willkommen."
+              accentColor="primary-500"
+            />
           </div>
 
           <!-- Description -->
           <div class="prose prose-gray">
             <p class="text-gray-700 leading-relaxed mb-4">
-              Wir laden Sie herzlich ein zu unseren Gottesdiensten und Veranstaltungen. In unserer Gemeinschaft steht die persönliche Beziehung zu Gott im Mittelpunkt.
-            </p>
-            <p class="text-gray-700 leading-relaxed mb-4">
-              Der wöchentliche Gottesdienst am Sonntag bietet Raum für Anbetung, Gebet und das gemeinsame Hören auf Gottes Wort. Einmal im Monat feiern wir das Heilige Abendmahl.
-            </p>
-            <p class="text-gray-700 leading-relaxed">
-              Der EC-Kreis und das Bibelgespräch bieten die Möglichkeit für vertiefende Gespräche über den Glauben und persönlichen Austausch in kleinerer Runde.
+              Alle Veranstaltungen finden in unseren Räumlichkeiten in der Ludwig-Stur-Str. 5 statt. Wir freuen uns auf Ihren Besuch!
             </p>
           </div>
 

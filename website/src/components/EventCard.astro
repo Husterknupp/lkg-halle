@@ -1,61 +1,65 @@
 ---
-import { Image } from "astro:assets";
-
 export interface Props {
-  image: ImageMetadata;
   title: string;
-  description: string;
   time: string;
   place: string;
-  href: string;
+  description: string;
+  contact?: {
+    person?: string;
+    email?: string;
+  };
+  accentColor?: 'primary-bright' | 'primary-stale' | 'primary-500';
 }
-const { image, title, description, time, place, href } = Astro.props;
+const { title, time, place, description, contact, accentColor = 'primary-bright' } = Astro.props;
 ---
 
-<a
-  href={href}
-  class="group flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
->
-  <div class="relative mb-6">
-    <Image
-      src={image}
-      alt={title}
-      class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg duration-300 group-hover:scale-105 group-hover:border-primary-bright group-focus:scale-105 group-focus:border-primary-bright"
-      loading="lazy"
-    />
-  </div>
+<div class={`border-l-4 border-${accentColor} pl-6 py-4 mb-6 bg-white rounded-r-lg shadow-sm hover:shadow-md transition-shadow duration-200`}>
+  <!-- Event Title -->
+  <h3 class="font-semibold text-xl text-gray-900 mb-4">{title}</h3>
   
-  <h3 class="text-xl font-bold mb-4 text-gray-900">
-    {title}
-  </h3>
-  
-  <!-- Time and Place Section - Prominently displayed -->
-  <div class="mb-6 w-full space-y-3">
+  <!-- Time and Place - Prominently displayed -->
+  <div class="space-y-3 mb-4">
     <!-- Time -->
-    <div class="flex items-center justify-center text-primary-bright">
-      <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <div class="flex items-center">
+      <svg class={`w-5 h-5 mr-3 text-${accentColor} flex-shrink-0`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
       </svg>
-      <span class="font-semibold text-lg">{time}</span>
+      <span class="font-semibold text-lg text-gray-800">{time}</span>
     </div>
     
     <!-- Place -->
-    <div class="flex items-center justify-center text-primary-bright">
-      <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <div class="flex items-center">
+      <svg class={`w-5 h-5 mr-3 text-${accentColor} flex-shrink-0`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
       </svg>
-      <span class="font-semibold text-lg">{place}</span>
+      <span class="font-medium text-gray-700">{place}</span>
     </div>
-  </div>
 
-  <!-- Divider -->
-  <div class="w-16 h-0.5 bg-gray-200 mx-auto mb-4 group-hover:bg-primary-bright group-focus:bg-primary-bright transition-colors duration-300"></div>
+    <!-- Contact Information (if provided) -->
+    {contact && (contact.person || contact.email) && (
+      <div class="flex items-start">
+        <svg class={`w-5 h-5 mr-3 text-${accentColor} flex-shrink-0 mt-0.5`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+        </svg>
+        <div class="text-sm text-gray-600">
+          {contact.person && (
+            <div class="font-medium">{contact.person}</div>
+          )}
+          {contact.email && (
+            <a href={`mailto:${contact.email}`} class="text-primary-bright hover:underline">
+              {contact.email}
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
   
   <!-- Description -->
-  <p class="mb-6 text-gray-700 leading-relaxed">{description}</p>
-  
-  <!-- Call to action -->
-  <span class="mt-auto px-6 py-2 bg-primary-stale hover:bg-primary-bright text-white font-semibold rounded-full transition-colors duration-200 group-hover:shadow-lg">
-    Mehr erfahren »
-  </span>
-</a>
+  {description && (
+    <div class="text-gray-700 leading-relaxed">
+      <p>{description}</p>
+    </div>
+  )}
+</div>

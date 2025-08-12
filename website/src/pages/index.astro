@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import Feature from "../components/Feature.astro";
-import EventCard from "../components/EventCard.astro";
 import gottesdienstImg from "../assets/gottesdienst.jpg";
 import miteinanderImg from "../assets/miteinander.png";
 import musikImg from "../assets/musik.jpg";
@@ -16,12 +15,10 @@ import musikImg from "../assets/musik.jpg";
     <!-- FEATURES -->
     <section class="md:mx-[10vw] py-2">
       <div class="columns-1 gap-8 md:columns-3 md:gap-6">
-        <EventCard
+        <Feature
           image={gottesdienstImg}
           title="Gott Begegnen & Anbeten"
-          time="Sonntags 10:00 Uhr"
-          place="Ludwig-Stur-Str. 5"
-          description="Wöchentlicher Gottesdienst, EC-Kreis und Bibelgespräch"
+          abstract="Wöchentlicher Gottesdienst, EC-Kreis und Bibelgespräch"
           href="/gott-begegnen-und-anbeten"
         />
         <Feature
