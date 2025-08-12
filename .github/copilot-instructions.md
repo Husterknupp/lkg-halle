@@ -1,6 +1,6 @@
 # LKG Halle Church Event Management System
 
-LKG Halle is a Node.js-based church event management system with automated calendar synchronization, website updates, and YouTube broadcast creation. The project consists of automation scripts in the root directory and an Astro-based website in the `/website/` subfolder.
+LKG Halle is a Node.js-based church event management system with automated calendar synchronization, website updates, and YouTube broadcast creation. The project consists of automation scripts in the root directory and an Astro-based website in the `/website/` subfolder. The website is work in progress. Eventually it's meant to serve the html for lkg-halle.de
 
 **Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.**
 
@@ -9,13 +9,13 @@ LKG Halle is a Node.js-based church event management system with automated calen
 ### Bootstrap and Dependencies
 
 - Install Node.js dependencies:
-  - Root project: `npm install` -- takes 2 minutes. NEVER CANCEL. Set timeout to 5+ minutes.
-  - Website: `cd website && npm install` -- takes 34 seconds. NEVER CANCEL. Set timeout to 2+ minutes.
+  - Root project: `npm ci` -- takes 2 minutes. NEVER CANCEL. Set timeout to 5+ minutes.
+  - Website: `cd website && npm ci` -- takes 34 seconds. NEVER CANCEL. Set timeout to 2+ minutes.
 - Install Playwright browsers: `npx playwright install --with-deps` -- takes 5-10 minutes. NEVER CANCEL. Set timeout to 15+ minutes.
   - Required for CodeceptJS automation tests
   - May fail due to network issues, but functionality will work without browsers installed
 
-### Environment Setup
+### Environment Setup for Working With Scripts
 
 - Create `.env` file in root directory with required secrets:
   ```
@@ -28,13 +28,28 @@ LKG Halle is a Node.js-based church event management system with automated calen
   ```
 - Without `.env` file, scripts will fail with authentication errors
 
-### Build and Development
+### Build and Development (Astro site)
 
 - Build website: `cd website && npm run build` -- takes 1.4 seconds. Set timeout to 1+ minute.
 - Run website dev server: `cd website && npm run dev` -- starts immediately, runs on localhost:4321
 - Preview built website: `cd website && npm run preview`
 
 ## Main Functionality
+
+## Website
+
+The website lkg-halle.de is a simple church/NGO website. Main users of the page are people that are interested in the church. It should be easy for them to know when the next church service will happen, to get some more details if they want and to get the feeling that the site is being maintained.
+
+The site is structured as follows. It has a landing page that shows
+
+- a hero image
+- the main areas of work in the church
+- an address section
+- and a footer with some meta info
+
+There are three other pages that explain the different sections of the church. These hold detailed information of the events this church offers. In addition to that, there is a page that's meant for internal use where members find links and content that is useful for working in the church.
+
+Last but not least, there are legal pages that try to be as easily readable as possible and hold only necessary, and not so much boilerplate content.
 
 ### Event Management Scripts
 
@@ -64,12 +79,10 @@ Run from root directory:
 - Configuration: `src/website_update/codecept.conf.js`
 - Tests target WordPress admin interface at lkg-halle.de
 
-## Validation
+## Validation (Astro site in `website/` dir)
 
 ### Before Making Changes
 
-- **ALWAYS run formatting check**: `npx prettier --check .`
-- **ALWAYS run formatting fix before committing**: `npx prettier --write .`
 - **Test website build**: `cd website && npm run build`
 - **Test website dev server**: `cd website && npm run dev`
 
@@ -78,12 +91,11 @@ Run from root directory:
 - **Manual validation scenarios**:
   1. **Website functionality**: Start dev server, verify pages load at localhost:4321
   2. **Build process**: Ensure `npm run build` completes without errors
-  3. **Script syntax**: Test `npm run get-next-sunday` (will show auth error but proves syntax is correct)
-  4. **Formatting**: Run `npx prettier --check .` and fix any issues
+  3. **Formatting**: run formatting fix before committing `npx prettier --write .`
 
-### CI/CD Integration
+## CI/CD Integration
 
-- GitHub Actions automatically run on schedule (Sundays 18:00 UTC)
+- GitHub Actions automatically run on schedule (Sundays 18:00 UTC) and execute scripts
 - Actions require all secrets configured in repository settings
 - Dependabot updates dependencies monthly with grouped minor/patch updates
 
@@ -104,31 +116,7 @@ Run from root directory:
 - `/website/public/` - Static assets
 - `/website/dist/` - Built website output (generated)
 
-## Common Development Tasks
-
-### Repository Root Files
-
-```bash
-ls -la
-# .env
-# .nvmrc (Node 24.5)
-# README.md
-# package.json
-# src/
-# website/
-# input-csvs/
-# todo.md
-```
-
-### Key Dependencies
-
-- **codeceptjs**: Browser automation framework (locked at 3.7.3)
-- **playwright**: Browser driver for CodeceptJS
-- **googleapis**: Google Calendar and YouTube API client
-- **dotenv**: Environment variable management
-- **dayjs**: Date manipulation utilities
-
-### Environment Considerations
+## Environment Considerations
 
 - **Node version**: Specified in .nvmrc as 24.5, works with 20.19.4+
 - **Playwright browsers**: Required for automation, install with `npx playwright install --with-deps`
@@ -140,7 +128,7 @@ ls -la
 ### Build Failures
 
 - **Prettier formatting**: Run `npx prettier --write .` to fix formatting issues
-- **Missing dependencies**: Run `npm install` in both root and website directories
+- **Missing dependencies**: Run `npm ci` in both root and website directories
 - **Node version**: Use Node 20.19.4+ or install version from .nvmrc
 
 ### Runtime Errors
