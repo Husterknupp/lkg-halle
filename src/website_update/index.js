@@ -19,7 +19,7 @@ Scenario("Login to admin area and update slider", async ({ I }) => {
 
   const oldDescription = await I.grabTextFrom("#slide_text_field");
   console.log(
-    `replace old description *${oldDescription}* with new version *${newDescription}*`
+    `replace old description *${oldDescription}* with new version *${newDescription}*`,
   );
   I.fillField("slide_text_field", newDescription);
 
