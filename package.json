@@ -19,23 +19,24 @@
   "author": "husterknupp",
   "license": "MIT",
   "dependenciesComments": {
-    "codeceptjs": "Had problems upgrading to v3.3+ because of internal plugin. Script couldn't get past wp login form. See https://github.com/codeceptjs/CodeceptJS/issues/3600"
+    "codeceptjs": "Had problems upgrading to v3.3+ because of internal plugin. Script couldn't get past wp login form. See https://github.com/codeceptjs/CodeceptJS/issues/3600",
+    "canvas": "required by codeceptjs-resemblehelper--had problems with v2 because it required node-gyp and in a version that was not compatible with newer Node versions"
   },
   "dependencies": {
-    "@codeceptjs/configure": "~1.0.4",
+    "@codeceptjs/configure": "~1.0.6",
     "@codeceptjs/examples": "~1.2.4",
-    "@codeceptjs/ui": "~1.2.4",
+    "@codeceptjs/ui": "~1.2.5",
     "codeceptjs": "3.7.3",
     "codeceptjs-resemblehelper": "~1.9.7",
     "csv-parser": "~3.2.0",
     "dayjs": "~1.11.13",
-    "dotenv": "~16.5.0",
-    "googleapis": "~149.0.0",
+    "dotenv": "~17.2.1",
+    "googleapis": "~150.0.1",
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
-    "playwright": "~1.52.0",
-    "prettier": "~3.5.3",
-    "webdriverio": "~9.15.0"
+    "playwright": "~1.54.2",
+    "prettier": "~3.6.2",
+    "webdriverio": "~9.18.4"
   },
   "overrides": {
     "axios": "^1.8.2",
@@ -44,6 +45,7 @@
     "send": "^0.19.0",
     "ws": "^8.17.1",
     "xml2js": "^0.5.0",
+    "canvas": "^3.1.2",
     "child-process-promise": "^6.0.6"
   }
 }

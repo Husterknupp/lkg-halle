@@ -2,17 +2,16 @@ const { JWT } = require("google-auth-library");
 const { google } = require("googleapis");
 
 async function createAuthClient() {
-  const jwtClient = new JWT(
-    process.env.SERVICE_ACCOUNT_EMAIL,
-    null,
-    process.env.SERVICE_ACCOUNT_PRIVATE_KEY,
-    [
+  const jwtClient = new JWT({
+    email: process.env.SERVICE_ACCOUNT_EMAIL,
+    key: process.env.SERVICE_ACCOUNT_PRIVATE_KEY,
+    scopes: [
       "https://www.googleapis.com/auth/calendar",
       "https://www.googleapis.com/auth/calendar.events",
       "https://www.googleapis.com/auth/calendar.events.readonly",
       "https://www.googleapis.com/auth/calendar.readonly",
-    ]
-  );
+    ],
+  });
 
   console.log("Authorizing Google Calendar API...");
   await jwtClient.authorize();
