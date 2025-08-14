@@ -1,0 +1,49 @@
+---
+export interface Props {
+  title: string;
+  time?: string;
+  location?: string;
+  contact?: string;
+  description: string;
+}
+const { title, time, location, contact, description } = Astro.props;
+---
+
+<div
+  class="bg-gray-50 rounded-2xl p-6 md:p-8 relative overflow-hidden mb-6 md:border md:border-gray-200 md:mb-0"
+>
+  <!-- Top gradient border -->
+  <div
+    class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-l from-primary-bright to-primary-stale"
+  >
+  </div>
+
+  <h3 class="font-serif text-xl font-semibold mb-4">{title}</h3>
+
+  <div class="flex flex-wrap gap-3 mb-5">
+    {
+      time && (
+        <span class="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium text-gray-600">
+          📅 {time}
+        </span>
+      )
+    }
+    {
+      location && (
+        <span class="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium text-gray-600">
+          📍 {location}
+        </span>
+      )
+    }
+    {
+      contact && (
+        <span class="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium text-gray-600">
+          👤 {contact}
+        </span>
+      )
+    }
+  </div>
+
+  <!-- set:html because we want <br> to be preserved -->
+  <div class="text-gray-700 leading-relaxed text-base" set:html={description} />
+</div>

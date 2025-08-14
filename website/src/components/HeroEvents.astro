@@ -1,0 +1,21 @@
+---
+export interface Props {
+  title: string;
+  backgroundImage: ImageMetadata;
+}
+const { title, backgroundImage } = Astro.props;
+---
+
+<section
+  class="relative w-full min-h-[340px] flex items-center justify-center mb-8 bg-cover bg-center"
+  style={`background-image: url(${backgroundImage.src});`}
+>
+  <div class="absolute inset-0 bg-black/45 z-0"></div>
+  <div
+    class="relative z-10 text-white text-center px-4 py-10 w-full max-w-2xl mx-auto"
+  >
+    <h1 class="font-serif text-3xl md:text-4xl font-semibold mb-3">
+      {title}
+    </h1>
+  </div>
+</section>
