@@ -1,91 +1,39 @@
 ---
-import Layout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/HeroEvents.astro";
+import EventCard from "../components/EventCard.astro";
+import heroImg from "../assets/miteinander.png";
 ---
 
-<Layout title="Miteinander - LKG Halle">
-  <main class="px-[10vw] py-8">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8 text-center">Miteinander</h1>
-      
-      <div class="prose prose-lg max-w-none">
-        <p class="text-xl text-gray-600 mb-8 text-center">
-          Gemeinschaft leben und Beziehungen pflegen
-        </p>
-        
-        <section class="mb-12">
-          <h2 class="text-2xl font-semibold mb-4">Unsere Gemeinschaft</h2>
-          <p class="mb-4">
-            Bei uns steht das Miteinander im Mittelpunkt. Wir glauben, dass Gott uns 
-            als Gemeinschaft berufen hat, um einander zu unterstützen, zu ermutigen 
-            und gemeinsam im Glauben zu wachsen.
-          </p>
-        </section>
-        
-        <section class="mb-12">
-          <h2 class="text-2xl font-semibold mb-4">Kleingruppen & Hauskreise</h2>
-          <p class="mb-4">
-            In unseren Kleingruppen und Hauskreisen haben Sie die Möglichkeit, 
-            tiefere Beziehungen zu knüpfen, gemeinsam die Bibel zu studieren 
-            und füreinander zu beten.
-          </p>
-          
-          <div class="bg-gray-50 p-6 rounded-lg mb-6">
-            <h3 class="text-xl font-semibold mb-3">Aktuelle Gruppen</h3>
-            <ul class="space-y-2">
-              <li><strong>Bibelkreis:</strong> Mittwochs 19:30 Uhr</li>
-              <li><strong>Jugendgruppe:</strong> Freitags 19:00 Uhr</li>
-              <li><strong>Seniorenkreis:</strong> Donnerstags 15:00 Uhr</li>
-            </ul>
-          </div>
-        </section>
-        
-        <section class="mb-12">
-          <h2 class="text-2xl font-semibold mb-4">Veranstaltungen & Feste</h2>
-          <p class="mb-4">
-            Regelmäßig organisieren wir gemeinsame Veranstaltungen, Feste und Ausflüge, 
-            um unsere Gemeinschaft zu stärken und neue Menschen kennenzulernen.
-          </p>
-          
-          <div class="grid md:grid-cols-2 gap-6 mb-6">
-            <div class="bg-green-50 p-4 rounded-lg">
-              <h4 class="font-semibold mb-2">Gemeindefest</h4>
-              <p class="text-sm">Jährliches Fest mit der ganzen Gemeinde</p>
-            </div>
-            <div class="bg-blue-50 p-4 rounded-lg">
-              <h4 class="font-semibold mb-2">Gemeinsame Ausflüge</h4>
-              <p class="text-sm">Wanderungen und Besichtigungen</p>
-            </div>
-            <div class="bg-yellow-50 p-4 rounded-lg">
-              <h4 class="font-semibold mb-2">Spieleabende</h4>
-              <p class="text-sm">Gesellige Abende für alle Altersgruppen</p>
-            </div>
-            <div class="bg-purple-50 p-4 rounded-lg">
-              <h4 class="font-semibold mb-2">Gemeinsame Mahlzeiten</h4>
-              <p class="text-sm">Mittagessen nach dem Gottesdienst</p>
-            </div>
-          </div>
-        </section>
-        
-        <section class="mb-12">
-          <h2 class="text-2xl font-semibold mb-4">Seelsorge & Unterstützung</h2>
-          <p class="mb-4">
-            Wir sind füreinander da - in guten wie in schweren Zeiten. 
-            Unsere Seelsorger und Mitarbeiter stehen für Gespräche, 
-            Gebet und praktische Hilfe zur Verfügung.
-          </p>
-        </section>
-        
-        <div class="bg-green-50 p-6 rounded-lg text-center">
-          <h3 class="text-xl font-semibold mb-3">Werden Sie Teil unserer Gemeinschaft!</h3>
-          <p class="mb-4">
-            Wir freuen uns auf neue Gesichter und laden Sie herzlich ein, 
-            Teil unserer Gemeinschaft zu werden.
-          </p>
-          <p class="text-sm text-gray-600">
-            Kontakt: info@lkg-halle.de oder 0345 / 97720825
-          </p>
-        </div>
+<BaseLayout title="Miteinander — LKG Halle">
+  <main>
+    <Hero title="Miteinander" backgroundImage={heroImg} />
+
+    <section class="md:mx-[10vw] py-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
+        <EventCard
+          title="Stammtisch"
+          time="Jeder 1. Freitag im Monat um 18:30 Uhr"
+          location="Restaurant 'My Sen' (Beesener Str. 38)"
+          contact="Friedbert (fsimon@lkg-halle.de)"
+          description="Ein Abend ohne feste Agenda soll zum Austauschen, Ermutigen und Bestärken dienen. Deshalb trifft Mann und Frau sich regelmäßig zum Abendbrot und diskutiert alltägliche und tiefergehende Fragen."
+        />
+
+        <EventCard
+          title="Frauenkreis"
+          time="Jeder 1. Mittwoch im Monat um 15:30 Uhr"
+          location="Ludwig-Stur-Str. 5 (Erdgeschoss)"
+          description="Gemeinsam singen und basteln, Sorgen und Probleme des Alltags teilen und auf Gottes Wort hören – das sind wesentliche Bestandteile des Frauenkreises.<br><br>Hier treffen sich einmal im Monat Frauen aller Altersstufen und genießen dazu gerne auch ein Stück Kuchen und eine Tasse Kaffee."
+        />
+
+        <EventCard
+          title="MediMuck"
+          time="Verschiedene Angebote mehrmals die Woche"
+          contact="Annett (0345 / 97720825)"
+          location="Meckelstraße 22, 06112 Halle Saale"
+          description={`Im nahegelegenen Medizinerviertel wird ein Café von der Gemeinde geführt. Die Vision dahinter ist, Erwachsenen und vor allem Kindern aus dieser Gegend einen offenen Treffpunkt zu bieten und Raum zur Entfaltung zu geben.<br><br>Es gibt verschiedene kostenlose Angebote, wie Fitness, kreativen Bastelaktionen und Spieleabende. Komm gern auf einen Kaffee vorbei und wenn du diese Vision teilst, freuen wir uns über Mitarbeiter und Spender.<br><br>Mehr Infos auf der Website: <a href="https://www.medimuck.de/" class="hover:underline" target="_blank" rel="noopener noreferrer">medimuck.de</a>`}
+        />
       </div>
-    </div>
+    </section>
   </main>
-</Layout>
+</BaseLayout>

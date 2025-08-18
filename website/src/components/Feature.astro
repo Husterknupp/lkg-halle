@@ -22,7 +22,8 @@ const { image, title, abstract, href } = Astro.props;
       loading="lazy"
     />
   </div>
-  <h3 class="font-semibold mb-2">
+  <!-- todo layout is broken on 769px-1040px width screens (has nothing to do with text-xl) -->
+  <h3 class="font-serif text-xl font-semibold mb-2 min-w-72">
     {title}
   </h3>
   <div
