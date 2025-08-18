@@ -1,21 +1,125 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-  <nav>
-    <ul>
-      <li><a href="/">Startseite</a></li>
-      <li><a href="/interner-bereich">Interner Bereich</a></li>
-    </ul>
-  </nav>
+<!-- todo muss noch korrigiert werden ! (so wie der Datenschutz ist, hat es Augment generiert) -->
+<Layout title="Datenschutz - LKG Halle">
+  <main class="px-[10vw] py-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8 text-center">Datenschutzerklärung</h1>
 
-  <main>
-    Dokumente und Links, hauptsächlich interessant für Mitglieder & Mitarbeiter
+      <div class="prose prose-lg max-w-none">
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">
+            1. Datenschutz auf einen Blick
+          </h2>
+
+          <h3 class="text-xl font-semibold mb-3">Allgemeine Hinweise</h3>
+          <p class="mb-4">
+            Die folgenden Hinweise geben einen einfachen Überblick darüber, was
+            mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website
+            besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie
+            persönlich identifiziert werden können.
+          </p>
+
+          <h3 class="text-xl font-semibold mb-3">
+            Datenerfassung auf dieser Website
+          </h3>
+          <p class="mb-4">
+            <strong
+              >Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong
+            ><br />
+            Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber.
+            Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">2. Hosting</h2>
+          <p class="mb-4">
+            Wir hosten die Inhalte unserer Website bei einem externen
+            Dienstleister. Die personenbezogenen Daten, die auf dieser Website
+            erfasst werden, werden auf den Servern des Hosters gespeichert.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">
+            3. Allgemeine Hinweise und Pflichtinformationen
+          </h2>
+
+          <h3 class="text-xl font-semibold mb-3">Datenschutz</h3>
+          <p class="mb-4">
+            Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen
+            Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten
+            vertraulich und entsprechend der gesetzlichen
+            Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+          </p>
+
+          <h3 class="text-xl font-semibold mb-3">
+            Hinweis zur verantwortlichen Stelle
+          </h3>
+          <div class="bg-gray-50 p-6 rounded-lg mb-4">
+            <p class="mb-2"><strong>Verantwortliche Stelle:</strong></p>
+            <p class="mb-2">Landeskirchliche Gemeinschaft Halle e.V.</p>
+            <p class="mb-2">Ludwig-Stur-Str. 5</p>
+            <p class="mb-2">06108 Halle (Saale)</p>
+            <p class="mb-2">Telefon: 0345 / 97720825</p>
+            <p class="mb-2">E-Mail: info@lkg-halle.de</p>
+          </div>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">
+            4. Datenerfassung auf dieser Website
+          </h2>
+
+          <h3 class="text-xl font-semibold mb-3">Server-Log-Dateien</h3>
+          <p class="mb-4">
+            Der Provider der Seiten erhebt und speichert automatisch
+            Informationen in so genannten Server-Log-Dateien, die Ihr Browser
+            automatisch an uns übermittelt. Dies sind:
+          </p>
+          <ul class="list-disc pl-6 mb-4">
+            <li>Browsertyp und Browserversion</li>
+            <li>verwendetes Betriebssystem</li>
+            <li>Referrer URL</li>
+            <li>Hostname des zugreifenden Rechners</li>
+            <li>Uhrzeit der Serveranfrage</li>
+            <li>IP-Adresse</li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mb-3">Kontaktformular</h3>
+          <p class="mb-4">
+            Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden
+            Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort
+            angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den
+            Fall von Anschlussfragen bei uns gespeichert.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">5. Ihre Rechte</h2>
+          <p class="mb-4">
+            Sie haben jederzeit das Recht unentgeltlich Auskunft über Herkunft,
+            Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu
+            erhalten. Sie haben außerdem ein Recht, die Berichtigung oder
+            Löschung dieser Daten zu verlangen.
+          </p>
+
+          <div class="bg-blue-50 p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-3">
+              Kontakt bei Datenschutzfragen
+            </h3>
+            <p class="mb-2">
+              Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte
+              eine E-Mail oder wenden Sie sich direkt an die für den Datenschutz
+              verantwortliche Person:
+            </p>
+            <p><strong>E-Mail:</strong> info@lkg-halle.de</p>
+          </div>
+        </section>
+      </div>
+    </div>
   </main>
-  <address>map + address information</address>
-  <footer>FOOTER</footer>
 </Layout>

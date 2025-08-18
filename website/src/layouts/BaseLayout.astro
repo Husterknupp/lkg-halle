@@ -19,12 +19,12 @@ const { title } = Astro.props;
     <header
       class="lg:mx-[10vw] flex items-center justify-between px-4 py-2 bg-white border-b border-gray-200"
     >
-      <div class="flex items-center">
+      <a class="flex items-center" href="/">
         <Logo class="w-12 h-12 mr-2" />
         <span class="text-lg font-bold font-serif whitespace-nowrap"
           >Landeskirchliche Gemeinschaft Halle</span
         >
-      </div>
+      </a>
       <Navigation />
     </header>
 
@@ -33,6 +33,9 @@ const { title } = Astro.props;
       <slot />
     </div>
     <!-- MAIN CONTENT ENDE -->
+
+    <!-- Glow effect: -->
+    <!-- https://codersblock.com/blog/creating-glow-effects-with-css/ -->
 
     <address>
       <iframe
@@ -43,19 +46,22 @@ const { title } = Astro.props;
       ></iframe>
       <div class="px-[10vw] lg:columns-3 py-10 bg-stone-700 text-white">
         <div class="lg:h-72 my-6 lg:my-0 max-w-[320px]">
-          <span class="font-bold">Adresse</span><br />
+          <span class="font-bold">Kontakt</span><br />
           Landeskirchliche Gemeinschaft Halle e.V.<br />
           Ludwig-Stur-Str. 5<br />
           06108 Halle (Saale)<br />
-          0345 / 97720825<br />
-          Jörg Hensen<br />
-          info@lkg-halle.de
+          <div class="h-1"></div>
+          Vorsitzender: Jörg Hensen<br />
+          Tel: 0345 / 97720825<br />
+          E-Mail: info@lkg-halle.de
         </div>
         <div class="lg:h-72 my-6 lg:my-0 max-w-[320px]">
           <span class="font-bold">Anfahrt mit dem Auto</span><br />
-          Aus Süden vom Riebeckplatz über die Magdeburger Straße<br /><br />
+          Aus Süden vom Riebeckplatz über die Magdeburger Straße<br />
+          <div class="h-1"></div>
           Aus Norden von der B100 kommend von der Paracelsusstraße rechts abbiegen
-          Richtung Steintor.<br /><br />
+          Richtung Steintor.<br />
+          <div class="h-1"></div>
           Parkplätze findet man im Viertel (Johann-Andreas-Segner-Straße / Luisenstraße)
         </div>
         <div class="lg:h-72 my-6 lg:my-0 max-w-[320px]">
@@ -67,7 +73,75 @@ const { title } = Astro.props;
         </div>
       </div>
     </address>
-    <footer class="bg-stone-800 text-stone-500 py-6">FOOTER</footer>
+
+    <footer class="px-[10vw] py-10 bg-stone-800 text-white mt-0">
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="flex flex-col md:flex-row md:justify-between md:items-start gap-10 md:gap-16"
+        >
+          <!-- Mission Statement & Logo -->
+          <div
+            class="flex-1 flex flex-col items-start mb-8 md:mb-0 min-w-[220px]"
+          >
+            <Logo class="w-14 h-14 mb-3" />
+            <p class="max-w-xs leading-relaxed">
+              Wir wollen unseren Nachbarn, Freunden und Familien Jesus
+              nahebringen. Dafür schaffen wir Möglichkeiten, dass sie Jesus,
+              sich selbst und uns begegnen können.
+            </p>
+          </div>
+          <!-- Links Section -->
+          <div
+            class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-8 w-full md:max-w-2xl"
+          >
+            <div>
+              <h4 class="text-base font-semibold mb-3">Unsere Bereiche</h4>
+              <ul class="space-y-2 text-gray-300">
+                <li>
+                  <a
+                    href="/gott-begegnen-anbeten"
+                    class="hover:text-white transition"
+                    >Gott begegnen & anbeten</a
+                  >
+                </li>
+                <li>
+                  <a href="/miteinander" class="hover:text-white transition"
+                    >Miteinander</a
+                  >
+                </li><li>
+                  <a href="/musik" class="hover:text-white transition">Musik</a>
+                </li><li>
+                  <a
+                    href="/interner-bereich"
+                    class="hover:text-white transition">Interner Bereich</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-base font-semibold mb-3">Rechtliches</h4>
+              <ul class="space-y-2 text-gray-300">
+                <li>
+                  <a href="/impressum" class="hover:text-white transition"
+                    >Impressum</a
+                  >
+                </li>
+                <li>
+                  <a href="/datenschutz" class="hover:text-white transition"
+                    >Datenschutz</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-10 border-t border-stone-700 pt-4 text-center text-sm text-white"
+        >
+          © 2025 bis heute — Landeskirchliche Gemeinschaft Halle e.V.
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
 
@@ -85,7 +159,15 @@ const { title } = Astro.props;
     }
   }
   :root {
+    sans--primary-color: rgb(87, 166, 217);
+    --secondary-color: rgb(241, 195, 91);
+    /* --secondary-color: rgb(142, 68, 173); */
+    --text-color: rgb(68, 68, 68);
     --background-color: rgb(236, 240, 241);
+    --blue1: rgb(87, 166, 217);
+    --blue2: rgb(51, 120, 163);
+    --blue3: rgb(120, 169, 180);
+    --blue4: rgb(24, 65, 98);
   }
 
   /* Menu font-size: Between body font sizes and h1 font size -- dont do this: Instead use tailwind's default utility classes

@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/HeroEvents.astro";
+import EventCard from "../components/EventCard.astro";
+import heroImg from "../assets/gottesdienst.jpg";
+---
+
+<BaseLayout title="LKG Halle">
+  <main>
+    <Hero title="Gott begegnen & anbeten" backgroundImage={heroImg} />
+
+    <section class="md:mx-[10vw] py-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
+        <EventCard
+          title="Gottesdienst"
+          time="Sonntags 10 Uhr"
+          location="Ludwig-Stur-Str. 5 (großer Saal)"
+          description="Das Zentrum unserer Gemeinde bildet der Gottesdienst. Wir treffen uns, um gemeinsam Gott zu begegnen, ihn zu feiern und auf sein Wort, die Bibel, zu hören, zusammen zu beten, zu singen und zu musizieren.<br><br>Auch wenn du noch nie in einem Gottesdienst warst, bist du bei uns herzlich willkommen. Danach bleibt noch Zeit für Gemeinschaft bei einer Tasse Kaffee."
+        />
+
+        <EventCard
+          title="EC-Kreis"
+          time="Mittwochs 18:30 Uhr"
+          location="Wechselnder Ort"
+          contact="Sebastian (sebastian@ec-halle.de)"
+          description={`Wir sind Teil der weltweiten "Entschieden für Christus"-Bewegung, kurz EC. Uns ist eine Entscheidung für unseren Herrn Jesus Christus wichtig und das wollen wir in unseren Alltag bringen.<br><br>Einmal die Woche treffen wir uns und sind einfach zusammen, diskutieren über Themen, die uns beschäftigen und beten miteinander.<br><br>Die meisten von uns sind bereits fertig mit der Ausbildung bzw. dem Studium.`}
+        />
+
+        <EventCard
+          title="Bibelgespräch"
+          time="Donnerstags 15:45 Uhr"
+          location="Ludwig-Stur-Str. 5 (Treppe rauf)"
+          description="Im Bibelgespräch wird sich vertiefend mit den Inhalten der Bibel auseinandergesetzt und sich darüber ausgetauscht.<br><br>Wo die Aussagen der Bibel zunächst unverständlich erscheinen, soll sich hier durch näheres Hinsehen und Studieren deren Bedeutung für den Alltag und das eigene Leben erschlossen werden."
+        />
+      </div>
+    </section>
+  </main>
+</BaseLayout>
