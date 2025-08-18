@@ -1,4 +1,7 @@
 ---
+import CalendarIcon from "../assets/icon-calendar.svg";
+import PinIcon from "../assets/icon-map-pin.svg";
+import UserIcon from "../assets/icon-user.svg";
 export interface Props {
   title: string;
   time?: string;
@@ -24,21 +27,25 @@ const { title, time, location, contact, description } = Astro.props;
     {
       time && (
         <span class="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium text-gray-600">
-          📅 {time}
+          <CalendarIcon />
+          {time}
         </span>
       )
     }
     {
       location && (
         <span class="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium text-gray-600">
-          📍 {location}
+          <PinIcon />
+          {location}
         </span>
       )
     }
+
     {
       contact && (
         <span class="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium text-gray-600">
-          👤 {contact}
+          <UserIcon />
+          {contact}
         </span>
       )
     }
