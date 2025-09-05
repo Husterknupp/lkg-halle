@@ -30,8 +30,4 @@ function getAlphabeticallyLastFileName(directory) {
   return path.join(directory, sortedFiles[0]);
 }
 
-module.exports = {
-  updateGoogleCalendar,
-};
-
 run().catch(console.error);
