@@ -27,7 +27,7 @@
     "@codeceptjs/configure": "~1.0.6",
     "@codeceptjs/examples": "~1.2.4",
     "@codeceptjs/ui": "~1.2.5",
-    "codeceptjs": "3.7.3",
+    "codeceptjs": "3.7.4",
     "codeceptjs-resemblehelper": "~1.9.7",
     "csv-parser": "~3.2.0",
     "dayjs": "~1.11.13",
