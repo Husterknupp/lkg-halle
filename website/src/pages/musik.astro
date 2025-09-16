@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/HeroEvents.astro";
 import EventCard from "../components/EventCard.astro";
-import heroImg from "../assets/musik.jpg";
+import heroImg from "../assets/musik_breit.jpg";
 ---
 
 <BaseLayout title="Musik — LKG Halle">
@@ -10,13 +10,13 @@ import heroImg from "../assets/musik.jpg";
     <Hero title="Musik" backgroundImage={heroImg} />
 
     <section class="md:mx-[10vw] py-2">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6 lg:gap-20">
         <EventCard
           title="Posaunenchor"
           time="Donnerstags 17:30 Uhr"
           location="Ludwig-Stur-Str. 5 (Erdgeschoss)"
           contact="info@lkg-halle.de"
-          description="Egal ob Trompete, Horn oder Posaune – gemeinsam blasen wir Gott zur Ehre.<br><br>Neben der Gestaltung von Gottesdiensten und dem regelmäßigen Turmblasen auf den Hausmannstürmen der Marktkirche sind die Bläser zu verschiedenen Veranstaltungen im Landesverband im Einsatz."
+          description="Egal ob Trompete, Horn oder Posaune — gemeinsam blasen wir Gott zur Ehre.<br><br>Neben der Gestaltung von Gottesdiensten und dem regelmäßigen Turmblasen auf den Hausmannstürmen der Marktkirche sind die Bläser zu verschiedenen Veranstaltungen im Landesverband im Einsatz."
         />
 
         <EventCard
@@ -24,7 +24,7 @@ import heroImg from "../assets/musik.jpg";
           time="Sonntags 10 Uhr"
           location="Ludwig-Stur-Str. 5 (großer Saal)"
           contact="info@lkg-halle.de"
-          description="Western-Gitarre, Cajon, Klavier, Geige, Bassgitarre und Gesang - da wir gesegnet sind mit vielen Musikanten, klingt es jeden Sonntag anders.<br><br>Zu hören sind sowohl Lieder des Gemeinschafts-Liederbuchs als auch jüngere Songs aus der christlichen Popmusik."
+          description="Western-Gitarre, Cajon, Klavier, Geige, Bassgitarre und Gesang — da wir gesegnet sind mit vielen Musikanten, klingt es jeden Sonntag anders.<br><br>Zu hören sind sowohl Lieder des Gemeinschafts-Liederbuchs als auch jüngere Songs aus der christlichen Popmusik."
         />
       </div>
     </section>
