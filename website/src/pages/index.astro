@@ -8,33 +8,33 @@ import musikImg from "../assets/musik.jpg";
 ---
 
 <BaseLayout title="LKG Halle">
-  <main>
-    <!-- todo this is all not big enough yet, the hero image, the text, the feature images -->
-    <Hero />
+  <!-- todo this is all not big enough yet, the hero image, the text, the feature images
+  Which resolution?
+  -->
+  <Hero />
 
-    <!-- FEATURES -->
-    <section class="md:mx-[10vw] py-2">
-      <div class="columns-1 gap-8 md:columns-3 md:gap-6">
-        <Feature
-          image={gottesdienstImg}
-          title="Gott begegnen & anbeten"
-          abstract="Wöchentlicher Gottesdienst, EC-Kreis und Bibelgespräch"
-          href="/gott-begegnen-anbeten"
-        />
-        <Feature
-          image={miteinanderImg}
-          title="Miteinander"
-          abstract="Offene Arbeiten Muckefuck, Muckeccino, MediMuck, sowie ein Männer-Stammtisch und Frauenkreis"
-          href="/miteinander"
-        />
-        <Feature
-          image={musikImg}
-          title="Musik"
-          abstract="Posaunenchor sowie Musik im Gottesdienst mit klassischen und modernen Liedern"
-          href="/musik"
-        />
-      </div>
-    </section>
-    <!-- FEATURES Ende -->
-  </main>
+  <!-- FEATURES -->
+  <section class="md:mx-[10vw] py-2">
+    <div class="columns-1 gap-8 md:columns-3 md:gap-6">
+      <Feature
+        image={gottesdienstImg}
+        title="Gott begegnen & anbeten"
+        abstract="Wöchentlicher Gottesdienst, EC-Kreis und Bibelgespräch"
+        href="/gott-begegnen-anbeten"
+      />
+      <Feature
+        image={miteinanderImg}
+        title="Miteinander"
+        abstract="Offene Arbeiten Muckefuck, Muckeccino, MediMuck, sowie ein Männer-Stammtisch und Frauenkreis"
+        href="/miteinander"
+      />
+      <Feature
+        image={musikImg}
+        title="Musik"
+        abstract="Posaunenchor sowie Musik im Gottesdienst mit klassischen und modernen Liedern"
+        href="/musik"
+      />
+    </div>
+  </section>
+  <!-- FEATURES Ende -->
 </BaseLayout>

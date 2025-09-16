@@ -28,11 +28,12 @@ const { title } = Astro.props;
       <Navigation />
     </header>
 
-    <!-- MAIN CONTENT -->
-    <div class="mb-10">
+    <!-- todo most pages that use BaseLayout.astro provide content that is wrapped in `main`. 
+      This doesn't make much sense because, here the slot is also wrapped in a `main`.
+      Can we delete the main in other places while preserving styles? -->
+    <main class="mb-10">
       <slot />
-    </div>
-    <!-- MAIN CONTENT ENDE -->
+    </main>
 
     <!-- Glow effect: -->
     <!-- https://codersblock.com/blog/creating-glow-effects-with-css/ -->
@@ -44,40 +45,12 @@ const { title } = Astro.props;
         height="350"
         src="https://www.openstreetmap.org/export/embed.html?bbox=11.973949670791628%2C51.48656083080657%2C11.976822316646576%2C51.48823768748756&layer=cyclemap&marker=51.48739926685569%2C11.975385993719101"
       ></iframe>
-      <div class="px-[10vw] lg:columns-3 py-10 bg-stone-700 text-white">
-        <div class="lg:h-72 my-6 lg:my-0 max-w-[320px]">
-          <span class="font-bold">Kontakt</span><br />
-          Landeskirchliche Gemeinschaft Halle e.V.<br />
-          Ludwig-Stur-Str. 5<br />
-          06108 Halle (Saale)<br />
-          <div class="h-1"></div>
-          Vorsitzender: Jörg Hensen<br />
-          Tel: 0345 / 97720825<br />
-          E-Mail: info@lkg-halle.de
-        </div>
-        <div class="lg:h-72 my-6 lg:my-0 max-w-[320px]">
-          <span class="font-bold">Anfahrt mit dem Auto</span><br />
-          Aus Süden vom Riebeckplatz über die Magdeburger Straße<br />
-          <div class="h-1"></div>
-          Aus Norden von der B100 kommend von der Paracelsusstraße rechts abbiegen
-          Richtung Steintor.<br />
-          <div class="h-1"></div>
-          Parkplätze findet man im Viertel (Johann-Andreas-Segner-Straße / Luisenstraße)
-        </div>
-        <div class="lg:h-72 my-6 lg:my-0 max-w-[320px]">
-          <span class="font-bold">Anfahrt mit der Straßenbahn</span><br />
-          Mit den Linien 1, 2, 16 (aus Richtung Markt) bzw. mit den Linien 5 oder
-          12 (aus Richtung Hbf) an der Haltestelle „Am Steintor“ aussteigen, die
-          Große Steinstraße entlang der Grünfläche laufen, vor dem Habibi Döner rechts
-          in die Ludwig-Stur-Straße biegen.
-        </div>
-      </div>
     </address>
 
     <footer class="px-[10vw] py-10 bg-stone-800 text-white mt-0">
       <div class="max-w-7xl mx-auto">
         <div
-          class="flex flex-col md:flex-row md:justify-between md:items-start gap-10 md:gap-16"
+          class="flex flex-col md:flex-row md:justify-between md:items-start gap-10 md:gap-16 mt-8"
         >
           <!-- Mission Statement & Logo -->
           <div
@@ -90,10 +63,22 @@ const { title } = Astro.props;
               sich selbst und uns begegnen können.
             </p>
           </div>
+
           <!-- Links Section -->
-          <div
-            class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-8 w-full md:max-w-2xl"
-          >
+          <div class="flex-2 grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
+            <div>
+              <h4 class="text-base font-semibold mb-3">Kontakt</h4>
+              <div class="text-gray-300">
+                Landeskirchliche Gemeinschaft Halle e.V.<br />
+                Ludwig-Stur-Str. 5<br />
+                06108 Halle (Saale)<br />
+                <div class="h-1"></div>
+                Vorsitzender: Jörg Hensen<br />
+                Tel: 0345 / 97720825<br />
+                E-Mail: info@lkg-halle.de
+              </div>
+            </div>
+
             <div>
               <h4 class="text-base font-semibold mb-3">Unsere Bereiche</h4>
               <ul class="space-y-2 text-gray-300">
@@ -145,6 +130,7 @@ const { title } = Astro.props;
   </body>
 </html>
 
+<!-- todo do we actually need those style declaration? Can we move them to styles/global.css? -->
 <style>
   html,
   body {
