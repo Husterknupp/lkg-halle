@@ -19,8 +19,7 @@ jobs:
         with:
           node-version-file: ".nvmrc"
       - run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      - run: npx playwright install --with-deps chromium
       - env:
           # Dependabot PRs have Actions secrets not available.
           # See secrets in Dependabot runs: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets
