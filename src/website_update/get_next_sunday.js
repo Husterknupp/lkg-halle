@@ -58,23 +58,36 @@ async function getNextSunday() {
   nextSunday.setUTCDate(nextSunday.getDate() + daysUntilSunday);
   console.log(`next Sunday: ${nextSunday}`);
 
-  const maybeResult = (await getCalendarEvents()).find((event) => {
+  const allEvents = await getCalendarEvents();
+  const nextSundayDateStr = simpleDateFormat(nextSunday);
+
+  // Filter all events for the target date
+  const eventsOnDate = allEvents.filter((event) => {
     //  full-day events are not relevant  (also, they have no `dateTime`)
     if (!event.start.dateTime) return false;
 
     // format of start.dateTime: 2019-10-12T07:20:50.52Z
-    return event.start.dateTime.indexOf(simpleDateFormat(nextSunday)) !== -1;
+    return event.start.dateTime.indexOf(nextSundayDateStr) !== -1;
   });
 
-  if (!maybeResult) {
+  if (eventsOnDate.length === 0) {
     throw new Error(
-      `Found no church service in calendar for date ${simpleDateFormat(nextSunday)}`,
-    );
-  } else {
-    console.log(
-      `event found: [${maybeResult.summary}] on [${maybeResult.start.dateTime}]`,
+      `Found no church service in calendar for date ${nextSundayDateStr}`,
     );
   }
+
+  // Prefer "Gottesdienst" events, otherwise pick the first event of the day
+  let maybeResult = eventsOnDate.find((event) =>
+    event.summary.toLowerCase().includes("gottesdienst"),
+  );
+
+  if (!maybeResult) {
+    maybeResult = eventsOnDate[0];
+  }
+
+  console.log(
+    `event found: [${maybeResult.summary}] on [${maybeResult.start.dateTime}]`,
+  );
 
   // node only supports english locale (`toLocaleDateString` vs `dateFormat`)
   const title =
