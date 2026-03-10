@@ -1,0 +1,61 @@
+﻿name;dateTime;lengthInHours;preaching;moderator;music;soundTechnican;streamTechnican;isStreamable
+Gottesdienst;2026-03-01T10:00:00;1.5;M. Genz;J. Hensen;;;;1
+Gottesdienst zum Jubiläum der Freien Evangelischen Schule Weißenfels;2026-03-08T10:00:00;1.5;F. Simon;0;;;;1
+Gottesdienst;2026-03-15T10:00:00;1.5;J. Hensen;L. Holzmann;;;;1
+Gottesdienst;2026-03-22T10:00:00;1.5;R. Katzmann;C. Fiedelak;;;;1
+Gottesdienst;2026-03-29T10:00:00;1.5;R. Exner;T. Hensen;;;;1
+Ostergottesdienst;2026-04-05T10:00:00;1.5;J. Hensen;*;;;;1
+Gottesdienst;2026-04-12T10:00:00;1.5;C. Machalet;K. Heft;;;;1
+Gottesdienst;2026-04-19T10:00:00;1.5;M. Genz;F. Simon;;;;1
+"""Gemeinschafts- und Begegnungstag""
+(keine Veranstaltung vor Ort)";2026-04-26T00:00:00;0.0;0;0;;;;0
+Bibelgespräch;2026-03-05T15:45:00;1.0;J. Hensen;0;;;;0
+Bibelgespräch;2026-03-12T15:45:00;1.0;M. Genz;0;;;;0
+Bibelgespräch;2026-03-19T16:00:00;1.0;R. Exner;0;;;;0
+Bibelgespräch;2026-03-26T15:45:00;1.0;J. Hensen;0;;;;0
+"Veranstaltung mit ""Open Doors""";2026-04-08T17:00:00;1.0;F. Simon;0;;;;0
+Bibelgespräch;2026-04-16T15:45:00;1.0;J. Hensen;0;;;;0
+Bibelgespräch;2026-04-23T15:45:00;1.0;R. Exner;0;;;;0
+Bibelgespräch;2026-04-30T15:45:00;1.0;*;0;;;;0
+EC-Kreis;2026-03-04T18:30:00;2.0;Team;0;;;;0
+EC-Kreis;2026-03-11T18:30:00;2.0;Team;0;;;;0
+EC-Kreis;2026-03-18T18:30:00;2.0;Team;0;;;;0
+EC-Kreis;2026-03-25T18:30:00;2.0;Team;0;;;;0
+EC-Kreis;2026-04-01T18:30:00;2.0;Team;0;;;;0
+EC-Kreis;2026-04-08T18:30:00;2.0;Team;0;;;;0
+EC-Kreis;2026-04-15T18:30:00;2.0;Team;0;;;;0
+EC-Kreis;2026-04-22T18:30:00;2.0;Team;0;;;;0
+EC-Kreis;2026-04-29T18:30:00;2.0;Team;0;;;;0
+"EC-""Breaking Bread"" (U30)";2026-03-03T19:00:00;2.0;Team;0;;;;0
+"EC-""Breaking Bread"" (U30)";2026-03-10T19:00:00;2.0;Team;0;;;;0
+"EC-""Breaking Bread"" (U30)";2026-03-17T19:00:00;2.0;Team;0;;;;0
+"EC-""Breaking Bread"" (U30)";2026-03-24T19:00:00;2.0;Team;0;;;;0
+"EC-""Breaking Bread"" (U30)";2026-03-31T19:00:00;2.0;Team;0;;;;0
+"EC-""Breaking Bread"" (U30)";2026-04-07T19:00:00;2.0;Team;0;;;;0
+"EC-""Breaking Bread"" (U30)";2026-04-14T19:00:00;2.0;Team;0;;;;0
+"EC-""Breaking Bread"" (U30)";2026-04-21T19:00:00;2.0;Team;0;;;;0
+"EC-""Breaking Bread"" (U30)";2026-04-28T19:00:00;2.0;Team;0;;;;0
+Bauausschuss;2026-03-03T17:00:00;2.0;J. Hensen;0;;;;0
+Bauausschuss;2026-03-17T17:00:00;2.0;J. Hensen;0;;;;0
+Bauausschuss;2026-03-31T17:00:00;2.0;J. Hensen;0;;;;0
+Bauausschuss;2026-04-14T17:00:00;2.0;J. Hensen;0;;;;0
+Bauausschuss;2026-04-28T17:00:00;2.0;J. Hensen;0;;;;0
+Männer-Stammtisch;2026-03-06T18:30:00;2.0;G. Fiedelak;0;;;;0
+Männer-Stammtisch;2026-04-10T18:30:00;2.0;G. Fiedelak;0;;;;0
+Frauenstunde;2026-03-04T15:30:00;1.5;D. Penthin;0;;;;0
+Frauenstunde;2026-04-01T15:30:00;1.5;D. Penthin;0;;;;0
+Vorstandssitzung;2026-03-16T18:00:00;3.0;J. Hensen;0;;;;0
+Vorstandssitzung;2026-04-20T18:00:00;3.0;J. Hensen;0;;;;0
+Lobpreis- und Gebetsabend;2026-02-27T17:00:00;1.0;0;0;;;;0
+Lobpreis- und Gebetsabend;2026-03-06T17:00:00;1.0;0;0;;;;0
+Lobpreis- und Gebetsabend;2026-03-13T17:00:00;1.0;0;0;;;;0
+Lobpreis- und Gebetsabend;2026-03-20T17:00:00;1.0;0;0;;;;0
+Lobpreis- und Gebetsabend;2026-03-27T17:00:00;1.0;0;0;;;;0
+Lobpreis- und Gebetsabend;2026-04-03T17:00:00;1.0;0;0;;;;0
+Lobpreis- und Gebetsabend;2026-04-10T17:00:00;1.0;0;0;;;;0
+Lobpreis- und Gebetsabend;2026-04-17T17:00:00;1.0;0;0;;;;0
+Lobpreis- und Anbetungsabend;2026-04-24T17:00:00;1.5;0;0;;;;0
+Karfreitagsgottesdienst mit Abendmahl;2026-04-03T15:00:00;1.0;M. Genz;M. Schwibs;;;;0
+Ostermorgen auf dem Galgenberg;2026-04-05T06:00:00;1.0;C. Machalet;0;;;;0
+Osterfrühstück;2026-04-05T08:30:00;1.5;0;0;;;;0
+Abschluss-Gottesdienst Jugend-Musik-Camp Ev. Meth. Jugendbildungswerk;2026-05-03T10:00:00;1.5;0;0;;;;0
