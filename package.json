@@ -27,17 +27,17 @@
     "@codeceptjs/configure": "~1.0.6",
     "@codeceptjs/examples": "~1.2.4",
     "@codeceptjs/ui": "~1.3.8",
-    "codeceptjs": "3.7.6",
+    "codeceptjs": "3.7.7",
     "codeceptjs-resemblehelper": "~1.9.7",
     "csv-parser": "~3.2.0",
-    "dayjs": "~1.11.19",
-    "dotenv": "~17.2.3",
+    "dayjs": "~1.11.20",
+    "dotenv": "~17.4.0",
     "googleapis": "~166.0.0",
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
-    "playwright": "~1.58.1",
+    "playwright": "~1.59.1",
     "prettier": "~3.8.1",
-    "webdriverio": "~9.23.3"
+    "webdriverio": "~9.27.0"
   },
   "overrides": {
     "axios": "^1.8.2",
@@ -49,6 +49,6 @@
     "child-process-promise": "^6.0.6"
   },
   "devDependencies": {
-    "jest": "^30.2.0"
+    "jest": "^30.3.0"
   }
 }
