@@ -35,7 +35,7 @@
     "googleapis": "~166.0.0",
     "intl-dateformat": "~0.1.4",
     "neat-csv": "~7.0.0",
-    "playwright": "~1.58.1",
+    "playwright": "~1.64.1",
     "prettier": "~3.8.1",
     "webdriverio": "~9.23.3"
   },
