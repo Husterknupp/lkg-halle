@@ -10,7 +10,7 @@ async function run() {
   dotenv.config();
 
   const events = await readEvents(
-    process.argv[2] || getAlphabeticallyLastFileName("./input-csvs") // default to latest file
+    process.argv[2] || getAlphabeticallyLastFileName("./input-csvs"), // default to latest file
   );
 
   if (events.length === 0) {
@@ -20,7 +20,7 @@ async function run() {
 
   await updateGoogleCalendar(events, await createCalendarClient());
   console.log(
-    "Done. All events have been successfully updated in Google Calendar."
+    "Done. All events have been successfully updated in Google Calendar.",
   );
 }
 

@@ -31,7 +31,7 @@ async function updateGoogleCalendar(events, calendar) {
       slicedSummary += "...";
     }
     console.log(
-      `Event "${slicedSummary}" created for ${event.dateTime} -- ID: ${result.data.id} -- Link: ${result.data.htmlLink}`
+      `Event "${slicedSummary}" created for ${event.dateTime} -- ID: ${result.data.id} -- Link: ${result.data.htmlLink}`,
     );
   }
 }
@@ -99,14 +99,14 @@ async function shouldSkipEvent(newEventSummary, time, calendar) {
 
   for (const existingEvent of maybeExisting) {
     console.log(
-      `Checking against existing event: ${existingEvent.summary} (${existingEvent.start.dateTime} - ${existingEvent.end.dateTime})`
+      `Checking against existing event: ${existingEvent.summary} (${existingEvent.start.dateTime} - ${existingEvent.end.dateTime})`,
     );
     if (
       newEventSummary.toLocaleLowerCase() ===
       existingEvent.summary.toLocaleLowerCase()
     ) {
       console.log(
-        `I see two events with the same name on the same day: Event '${existingEvent.summary}' is already in the calendar (from ${existingEvent.start.dateTime} to ${existingEvent.end.dateTime}). Not adding it a second time.`
+        `I see two events with the same name on the same day: Event '${existingEvent.summary}' is already in the calendar (from ${existingEvent.start.dateTime} to ${existingEvent.end.dateTime}). Not adding it a second time.`,
       );
       return true;
     }
