@@ -1,5 +1,5 @@
-const getNextSunday = require("./get_next_sunday.js").getNextSunday;
-const dotenv = require("dotenv");
+import { getNextSunday } from "./get_next_sunday.js";
+import dotenv from "dotenv";
 
 Feature("Website Update");
 
