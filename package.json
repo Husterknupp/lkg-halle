@@ -8,10 +8,6 @@
     "test": "jest",
     "codeceptjs": "codeceptjs run --steps",
     "codeceptjs:headless": "HEADLESS=true codeceptjs run --steps",
-    "codeceptjs:ui": "codecept-ui --app",
-    "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
-    "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
-    "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples",
     "get-next-sunday": "node -e 'require(\"dotenv\").config(); require(\"./src/website_update/get_next_sunday.js\").getNextSunday()'",
     "update-slider": "HEADLESS=true codeceptjs run --config ./src/website_update/codecept.conf.js --grep \"Website Update\"",
     "create-calendar-entries": "node src/calendar_update/index.js",
@@ -19,16 +15,8 @@
   },
   "author": "husterknupp",
   "license": "MIT",
-  "dependenciesComments": {
-    "codeceptjs": "Had problems upgrading to v3.3+ because of internal plugin. Script couldn't get past wp login form. See https://github.com/codeceptjs/CodeceptJS/issues/3600",
-    "canvas": "required by codeceptjs-resemblehelper--had problems with v2 because it required node-gyp and in a version that was not compatible with newer Node versions"
-  },
   "dependencies": {
-    "@codeceptjs/configure": "~1.0.6",
-    "@codeceptjs/examples": "~1.2.4",
-    "@codeceptjs/ui": "~1.3.8",
-    "codeceptjs": "3.7.6",
-    "codeceptjs-resemblehelper": "~1.9.7",
+    "codeceptjs": "^4.2.4",
     "csv-parser": "~3.2.1",
     "dayjs": "~1.11.21",
     "dotenv": "~17.4.2",
@@ -45,7 +33,6 @@
     "send": "^0.19.0",
     "ws": "^8.17.1",
     "xml2js": "^0.5.0",
-    "canvas": "^3.1.2",
     "child-process-promise": "^6.0.6",
     "@xmldom/xmldom": "^0.9.10"
   },
