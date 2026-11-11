@@ -1,4 +1,5 @@
 exports.config = {
+  noGlobals: true,
   tests: "./index.mjs",
   output: "../../output",
   helpers: {
