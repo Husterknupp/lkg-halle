@@ -28,7 +28,10 @@
     "webdriverio": "~10.1.0"
   },
   "overrides": {
-    "qs": "^6.16.1"
+    "qs": "^6.16.1",
+    "glob": "^14.0.2",
+    "minimatch": "^11.0.1",
+    "uuid": "^11.1.1"
   },
   "devDependencies": {
     "jest": "^30.5.2"
